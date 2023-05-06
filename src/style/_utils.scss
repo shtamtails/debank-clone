@@ -20,7 +20,7 @@ $spacingScales: (
   @each $dir in (top, right, bottom, left) {
     @each $scale, $multiplier in $spacingScales {
       .#{$prop}-#{$dir}-#{$scale} {
-        #{$prop}-#{$dir}: calculate-spacing($multiplier);
+        #{$prop}-#{$dir}: calculate-spacing($multiplier) !important;
       }
     }
   }
@@ -29,7 +29,7 @@ $spacingScales: (
 @each $prop in (border-radius) {
   @each $scale, $multiplier in $spacingScales {
     .#{$prop}-#{$scale} {
-      #{$prop}: calculate-spacing($multiplier);
+      #{$prop}: calculate-spacing($multiplier) !important;
     }
   }
 }
