@@ -9,7 +9,7 @@ export const Input: React.FC<InputProps> = (props) => {
     component: "input",
   });
 
-  const containerClassName = [`input-container ${props.className}`];
+  const containerClassName = [`input ${props.className}`];
   props.pl && containerClassName.push(`padding-left-${props.pl}`);
   props.pr && containerClassName.push(`padding-right-${props.pr}`);
   props.pt && containerClassName.push(`padding-top-${props.pt}`);
