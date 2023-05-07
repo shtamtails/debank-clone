@@ -19,11 +19,10 @@ export type Colors =
 export type Variants = "filled" | "light" | "outline" | "subtle";
 
 export interface SharedUIProps {
-  borderRadius?: Sizes;
+  className?: string;
   fullWidth?: boolean;
   disabled?: boolean;
   size?: Sizes;
-  variant?: Variants;
   color?: Colors;
   testId?: string;
   width?: string | number;

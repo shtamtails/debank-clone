@@ -21,40 +21,42 @@ button {
   }
 }
 
-.button-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+.button {
+  &-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-.button--xs {
-  height: 1.875rem;
-  font-size: 0.75rem;
-  padding: 0 0.875rem;
-}
+  &--xs {
+    height: 1.875rem;
+    font-size: 0.75rem;
+    padding: 0 0.875rem;
+  }
 
-.button--sm {
-  height: 2.25rem;
-  font-size: 0.875rem;
-  padding: 0 1.125rem;
-}
+  &--sm {
+    height: 2.25rem;
+    font-size: 0.875rem;
+    padding: 0 1.125rem;
+  }
 
-.button--md {
-  height: 2.625rem;
-  font-size: 1rem;
-  padding: 0 1.375rem;
-}
+  &--md {
+    height: 2.625rem;
+    font-size: 1rem;
+    padding: 0 1.375rem;
+  }
 
-.button--lg {
-  height: 3.125rem;
-  font-size: 1.125rem;
-  padding: 0 1.625rem;
-}
+  &--lg {
+    height: 3.125rem;
+    font-size: 1.125rem;
+    padding: 0 1.625rem;
+  }
 
-.button--xl {
-  height: 3.75rem;
-  font-size: 1.25rem;
-  padding: 0 2rem;
+  &--xl {
+    height: 3.75rem;
+    font-size: 1.25rem;
+    padding: 0 2rem;
+  }
 }
 
 .buttons-story {

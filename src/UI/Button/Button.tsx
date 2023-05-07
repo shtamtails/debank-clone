@@ -11,6 +11,7 @@ export const Button: FC<ButtonProps> = (props) => {
   const className = getClassName({
     props,
     component: "button",
+    withIndents: true,
   });
 
   return (
