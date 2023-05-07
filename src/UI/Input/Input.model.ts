@@ -7,4 +7,6 @@ export interface InputProps extends Omit<SharedUIProps, "color"> {
   required?: boolean;
   variant?: "dark" | "light";
   placeholder?: string;
+  description?: string;
+  error?: string;
 }

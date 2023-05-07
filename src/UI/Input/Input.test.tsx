@@ -16,6 +16,20 @@ describe("Input", () => {
     expect(labelElement).toBeInTheDocument();
   });
 
+  it("should render description correctly", () => {
+    const description = "Description";
+    render(<Input description={description} />);
+    const descriptionElement = screen.getByText(description);
+    expect(descriptionElement).toBeInTheDocument();
+  });
+
+  it("should render error correctly", () => {
+    const error = "Error";
+    render(<Input error={error} />);
+    const errorElement = screen.getByText(error);
+    expect(errorElement).toBeInTheDocument();
+  });
+
   it("should render required indicator when required is true", () => {
     render(<Input label="Full name" required />);
     const requiredIndicatorElement = screen.getByText("*");
@@ -72,6 +86,6 @@ describe("Input", () => {
       <Input testId="input" className={className} />
     );
     const inputContainer = getByTestId("input-container");
-    expect(inputContainer).toHaveClass(`input-container ${className}`);
+    expect(inputContainer).toHaveClass(`input ${className}`);
   });
 });

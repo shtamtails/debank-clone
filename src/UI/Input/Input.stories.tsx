@@ -21,8 +21,22 @@ export const Inputs = () => {
   return (
     <>
       <div className="story-container--dark">
-        <Input placeholder="Placeholder" variant="dark" mb="lg" />
-        <Input label="Full name" required variant="dark" value="Hello World!" />
+        <Input
+          label="Full name"
+          required
+          variant="dark"
+          value="Hello World!"
+          description="Description"
+          mb="lg"
+        />
+        <Input
+          label="Full name"
+          required
+          variant="dark"
+          value="Hello World!"
+          description="Description"
+          error="Error"
+        />
       </div>
       <div className="story-container--light">
         <Input placeholder="Placeholder" variant="light" mb="lg" />
@@ -31,6 +45,57 @@ export const Inputs = () => {
           required
           variant="light"
           value="Hello World!"
+          description="Description"
+          error="Error"
+        />
+      </div>
+    </>
+  );
+};
+
+export const InputSizes = () => {
+  return (
+    <>
+      <div className="story-container--light">
+        <Input
+          placeholder="Placeholder"
+          description="Description"
+          label="Label"
+          variant="light"
+          mb="lg"
+          size="xs"
+        />
+        <Input
+          placeholder="Placeholder"
+          description="Description"
+          label="Label"
+          variant="light"
+          mb="lg"
+          size="sm"
+        />
+        <Input
+          placeholder="Placeholder"
+          description="Description"
+          label="Label"
+          variant="light"
+          mb="lg"
+          size="md"
+        />
+        <Input
+          placeholder="Placeholder"
+          description="Description"
+          label="Label"
+          variant="light"
+          mb="lg"
+          size="lg"
+        />
+        <Input
+          placeholder="Placeholder"
+          description="Description"
+          label="Label"
+          variant="light"
+          mb="lg"
+          size="xl"
         />
       </div>
     </>

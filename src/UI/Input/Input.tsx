@@ -5,8 +5,15 @@ import "./Input.style.scss";
 export const Input: React.FC<InputProps> = (props) => {
   // Get classNames without indents, because indents should
   // be used in the input-container to work properly
+  const inputClassName = [""];
+  props.variant &&
+    inputClassName.push(
+      `input--${props.variant === "light" ? "light" : "dark"}`
+    );
+  props.error && inputClassName.push("input--error");
+
   const className = getClassName({
-    defaultClassName: `input--${props.variant === "light" ? "light" : "dark"}`,
+    defaultClassName: inputClassName.join(" ").trim(),
     props,
     component: "input",
   });
@@ -31,6 +38,14 @@ export const Input: React.FC<InputProps> = (props) => {
       `input__label--${props.variant === "light" ? "light" : "dark"}`
     );
 
+  // classNames for the description element
+  const descriptionClassName = ["input__description"];
+  props.size && descriptionClassName.push(`input__description--${props.size}`);
+  props.variant &&
+    descriptionClassName.push(
+      `input__description--${props.variant === "light" ? "light" : "dark"}`
+    );
+
   return (
     <div
       data-testid="input-container"
@@ -43,7 +58,11 @@ export const Input: React.FC<InputProps> = (props) => {
           {props.required && <div className="input__label--required">*</div>}
         </label>
       )}
-
+      {props.description && (
+        <div className={descriptionClassName.join(" ").trim()}>
+          {props.description}
+        </div>
+      )}
       <input
         data-testid={props.testId}
         disabled={props.disabled}
@@ -55,6 +74,7 @@ export const Input: React.FC<InputProps> = (props) => {
           props.setValue && props.setValue(e.target.value);
         }}
       />
+      {props.error && <div className="input__error">{props.error}</div>}
     </div>
   );
 };
