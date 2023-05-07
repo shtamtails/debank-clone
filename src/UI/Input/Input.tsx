@@ -3,12 +3,15 @@ import { InputProps } from "./Input.model";
 import "./Input.style.scss";
 
 export const Input: React.FC<InputProps> = (props) => {
+  // Get classNames without indents, because indents should
+  // be used in the input-container to work properly
   const className = getClassName({
     defaultClassName: `input--${props.variant === "light" ? "light" : "dark"}`,
     props,
     component: "input",
   });
 
+  // Add ident classNames to container element
   const containerClassName = [`input ${props.className}`];
   props.pl && containerClassName.push(`padding-left-${props.pl}`);
   props.pr && containerClassName.push(`padding-right-${props.pr}`);
@@ -20,6 +23,14 @@ export const Input: React.FC<InputProps> = (props) => {
   props.mb && containerClassName.push(`margin-bottom-${props.mb}`);
   props.radius && containerClassName.push(`border-radius-${props.radius}`);
 
+  // classNames for the label element
+  const labelClassName = ["input__label"];
+  props.size && labelClassName.push(`input__label--${props.size}`);
+  props.variant &&
+    labelClassName.push(
+      `input__label--${props.variant === "light" ? "light" : "dark"}`
+    );
+
   return (
     <div
       data-testid="input-container"
@@ -27,11 +38,7 @@ export const Input: React.FC<InputProps> = (props) => {
       style={{ width: props.width }}
     >
       {props.label && (
-        <label
-          className={`input__label input__label--${props.size} input__label--${
-            props.variant === "light" ? "light" : "dark"
-          }`}
-        >
+        <label className={labelClassName.join(" ").trim()}>
           Full name
           {props.required && <div className="input__label--required">*</div>}
         </label>
