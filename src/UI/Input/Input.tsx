@@ -3,8 +3,6 @@ import { InputProps } from "./Input.model";
 import "./Input.style.scss";
 
 export const Input: React.FC<InputProps> = (props) => {
-  // Get classNames without indents, because indents should
-  // be used in the input-container to work properly
   const inputClassName = [""];
   props.variant &&
     inputClassName.push(
@@ -18,7 +16,20 @@ export const Input: React.FC<InputProps> = (props) => {
     component: "input",
   });
 
-  // Add ident classNames to container element
+  const labelClassName = ["input__label"];
+  props.size && labelClassName.push(`input__label--${props.size}`);
+  props.variant &&
+    labelClassName.push(
+      `input__label--${props.variant === "light" ? "light" : "dark"}`
+    );
+
+  const descriptionClassName = ["input__description"];
+  props.size && descriptionClassName.push(`input__description--${props.size}`);
+  props.variant &&
+    descriptionClassName.push(
+      `input__description--${props.variant === "light" ? "light" : "dark"}`
+    );
+
   const containerClassName = [`input ${props.className}`];
   props.pl && containerClassName.push(`padding-left-${props.pl}`);
   props.pr && containerClassName.push(`padding-right-${props.pr}`);
@@ -29,22 +40,6 @@ export const Input: React.FC<InputProps> = (props) => {
   props.mt && containerClassName.push(`margin-top-${props.mt}`);
   props.mb && containerClassName.push(`margin-bottom-${props.mb}`);
   props.radius && containerClassName.push(`border-radius-${props.radius}`);
-
-  // classNames for the label element
-  const labelClassName = ["input__label"];
-  props.size && labelClassName.push(`input__label--${props.size}`);
-  props.variant &&
-    labelClassName.push(
-      `input__label--${props.variant === "light" ? "light" : "dark"}`
-    );
-
-  // classNames for the description element
-  const descriptionClassName = ["input__description"];
-  props.size && descriptionClassName.push(`input__description--${props.size}`);
-  props.variant &&
-    descriptionClassName.push(
-      `input__description--${props.variant === "light" ? "light" : "dark"}`
-    );
 
   return (
     <div

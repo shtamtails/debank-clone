@@ -9,6 +9,7 @@ export const Button: FC<ButtonProps> = (props) => {
 
   const styles = getStyles(props);
   const className = getClassName({
+    defaultClassName: "button",
     props,
     component: "button",
     withIndents: true,

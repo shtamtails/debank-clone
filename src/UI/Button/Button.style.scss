@@ -1,6 +1,6 @@
 @use "../../style/colors" as *;
 
-button {
+.button {
   border-radius: 4px;
   cursor: pointer;
   font-weight: 600;
@@ -19,9 +19,6 @@ button {
   &:active {
     transform: translateY(1px);
   }
-}
-
-.button {
   &-icon {
     display: flex;
     align-items: center;

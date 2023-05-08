@@ -5,8 +5,8 @@ import { render, fireEvent } from "@testing-library/react";
 
 describe("Button component", () => {
   it("should render children text", () => {
-    const { getByTestId } = render(<Button testId="button">Button</Button>);
-    const button = getByTestId("button");
+    const { getByText } = render(<Button testId="button">Button</Button>);
+    const button = getByText("Button");
     expect(button).toBeInTheDocument();
     expect(button).toBe;
   });

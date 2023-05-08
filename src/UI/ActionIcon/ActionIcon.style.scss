@@ -1,0 +1,44 @@
+.action-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  border-radius: 8px;
+  height: 1.75rem;
+  width: 1.75rem;
+  svg {
+    height: 50%;
+    width: auto;
+  }
+  &--xs {
+    height: 1.125rem;
+    width: 1.125rem;
+  }
+  &--sm {
+    height: 1.375rem;
+    width: 1.375rem;
+  }
+  &--md {
+    height: 1.75rem;
+    width: 1.75rem;
+  }
+  &--lg {
+    height: 2.125rem;
+    width: 2.125rem;
+  }
+  &--xl {
+    height: 2.75rem;
+    width: 2.75rem;
+  }
+}
+
+.action-icon-story {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  .action-icon-story__container {
+    gap: 12px;
+    display: flex;
+  }
+}
