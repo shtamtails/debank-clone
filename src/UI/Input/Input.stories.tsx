@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Input } from "./Input";
+import { BiLockAlt } from "react-icons/bi";
 
 const meta: Meta<typeof Input> = {
   title: "UI/Input",
@@ -50,6 +51,17 @@ export const Inputs = () => {
         />
       </div>
     </>
+  );
+};
+
+export const InputWithIcon = () => {
+  return (
+    <Input
+      placeholder="Password"
+      variant="light"
+      icon={<BiLockAlt />}
+      type="password"
+    />
   );
 };
 

@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { SharedUIProps } from "../models";
 
 export interface InputProps extends Omit<SharedUIProps, "color"> {
@@ -9,4 +10,6 @@ export interface InputProps extends Omit<SharedUIProps, "color"> {
   placeholder?: string;
   description?: string;
   error?: string;
+  icon?: ReactNode;
+  type?: "number" | "password" | "search" | "text" | "url";
 }

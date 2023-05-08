@@ -9,6 +9,7 @@ export const Input: React.FC<InputProps> = (props) => {
       `input--${props.variant === "light" ? "light" : "dark"}`
     );
   props.error && inputClassName.push("input--error");
+  props.icon && inputClassName.push("input--with-icon");
 
   const className = getClassName({
     defaultClassName: inputClassName.join(" ").trim(),
@@ -58,7 +59,9 @@ export const Input: React.FC<InputProps> = (props) => {
           {props.description}
         </div>
       )}
+      {props.icon && <div className="input__icon">{props.icon}</div>}
       <input
+        type={props.type}
         data-testid={props.testId}
         disabled={props.disabled}
         placeholder={props.placeholder}
