@@ -72,7 +72,7 @@ export const DifferentVariant: Story = {
 
 export const WithIcon: Story = {
   args: {
-    leftIcon: HiOutlineDatabase,
+    leftIcon: <HiOutlineDatabase />,
     children: "Database",
   },
 };

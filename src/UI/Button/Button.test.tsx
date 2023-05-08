@@ -36,7 +36,9 @@ describe("Button component", () => {
 
   it("should display left icon when provided", () => {
     const { getByTestId } = render(
-      <Button leftIcon={HiArchive}>Button</Button>
+      <Button leftIcon={<HiArchive data-testid="button-left-icon" />}>
+        Button
+      </Button>
     );
     const icon = getByTestId("button-left-icon");
     expect(icon).toBeInTheDocument();
@@ -44,7 +46,9 @@ describe("Button component", () => {
 
   it("should display right icon when provided", () => {
     const { getByTestId } = render(
-      <Button rightIcon={HiArchive}>Button</Button>
+      <Button rightIcon={<HiArchive data-testid="button-right-icon" />}>
+        Button
+      </Button>
     );
     const icon = getByTestId("button-right-icon");
     expect(icon).toBeInTheDocument();

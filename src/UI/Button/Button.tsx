@@ -30,23 +30,13 @@ export const Button: FC<ButtonProps> = (props) => {
         setHovered(false);
       }}
     >
-      <div className="button-icon">
-        {props.leftIcon && (
-          <props.leftIcon
-            className="margin-right-md"
-            data-testid="button-left-icon"
-          />
-        )}
-      </div>
+      {props.leftIcon && (
+        <div className="button-icon margin-right-md">{props.leftIcon}</div>
+      )}
       {props.children}
-      <div className="button-icon">
-        {props.rightIcon && (
-          <props.rightIcon
-            className="margin-left-md"
-            data-testid="button-right-icon"
-          />
-        )}
-      </div>
+      {props.rightIcon && (
+        <div className="button-icon margin-left-md">{props.rightIcon}</div>
+      )}
     </button>
   );
 };
