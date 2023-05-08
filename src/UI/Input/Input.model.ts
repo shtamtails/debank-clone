@@ -11,5 +11,5 @@ export interface InputProps extends Omit<SharedUIProps, "color"> {
   description?: string;
   error?: string;
   icon?: ReactNode;
-  type?: "number" | "password" | "search" | "text" | "url";
+  type?: "number" | "password" | "search" | "text" | "url" | "email";
 }

@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { Input } from "./Input";
 import { expect, describe, it, vi } from "vitest";
+import { HiSearch } from "react-icons/hi";
 
 describe("Input", () => {
   it("should render correctly with default props", () => {
@@ -87,5 +88,22 @@ describe("Input", () => {
     );
     const inputContainer = getByTestId("input-container");
     expect(inputContainer).toHaveClass(`input ${className}`);
+  });
+
+  it("should render icon when provided", () => {
+    const { getByTestId } = render(
+      <Input testId="input-with-icon" icon={<HiSearch data-testid="icon" />} />
+    );
+    const inputElement = getByTestId("input-with-icon");
+    expect(inputElement).toHaveClass("input--with-icon");
+    expect(getByTestId("icon")).toBeInTheDocument();
+  });
+
+  it("should render with correct type", () => {
+    render(<Input type="email" testId="input-element" />);
+    expect(screen.getByTestId("input-element")).toHaveAttribute(
+      "type",
+      "email"
+    );
   });
 });
