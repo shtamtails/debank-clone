@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { SharedUIProps } from "../models";
+import { ReactNode, RefObject } from "react";
+import { SharedUIProps, Sizes } from "../models";
 
 export type SelectData = { value: string; label: string };
 
@@ -23,4 +23,15 @@ export interface InputProps extends Omit<SharedUIProps, "color"> {
     | "email"
     | "autocomplete"
     | "select";
+}
+
+export interface DropdownMenuProps {
+  value: string;
+  data: SelectData[];
+  variant: "dark" | "light";
+  menuRef: RefObject<HTMLInputElement>;
+  size: Sizes;
+  setMenuOpened: (arg0: boolean) => void;
+  setValue?: (arg0: string) => void;
+  setInputValue: (arg0: string) => void;
 }

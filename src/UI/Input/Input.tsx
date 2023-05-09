@@ -1,23 +1,68 @@
 import { useState, useRef, ChangeEvent } from "react";
 import { useClickOutside } from "../../hooks/useClickOutside";
 import { getInputClassNames } from "../../utils/getClassName/getClassName";
-import { InputProps } from "./Input.model";
+import { DropdownMenuProps, InputProps } from "./Input.model";
 import { IoMdArrowDropdown } from "react-icons/io";
 import "./Input.style.scss";
+
+export const DropdownMenu: React.FC<DropdownMenuProps> = (props) => {
+  const {
+    value,
+    data,
+    variant,
+    menuRef,
+    size,
+    setMenuOpened,
+    setValue,
+    setInputValue,
+  } = props;
+
+  const filteredData = value
+    ? data?.filter((el) =>
+        el.label.toLowerCase().includes(value?.toLowerCase())
+      )
+    : data;
+  return (
+    <div
+      data-testid="autocomplete-dropdown-menu"
+      className={`dropdown-menu dropdown-menu--${variant}`}
+      ref={menuRef}
+    >
+      {filteredData?.map((element, index) => (
+        <div
+          key={index}
+          data-testid="autocomplete-dropdown-menu-element"
+          className={`dropdown-menu__element 
+              dropdown-menu__element--${size} 
+              dropdown-menu__element--${variant}
+               ${
+                 value === element.value
+                   ? `dropdown-menu__element--selected--${variant}`
+                   : ""
+               } 
+              
+              `}
+          onClick={() => {
+            setMenuOpened(false);
+            setInputValue(element.label);
+            setValue && setValue(element.value);
+          }}
+        >
+          {element.label}
+        </div>
+      ))}
+    </div>
+  );
+};
 
 export const Input: React.FC<InputProps> = (props) => {
   const [menuOpened, setMenuOpened] = useState(false);
 
-  const [value, setValue] = useState(
+  const [inputValue, setInputValue] = useState(
     props.data
       ? props.data.find((item) => item.value === props.value)?.label
       : props.value
   );
-  const filteredData = value
-    ? props.data?.filter((el) =>
-        el.label.toLowerCase().includes(value?.toLowerCase())
-      )
-    : props.data;
 
   // Close menu when clicked outside of it
   const menuRef = useRef(null);
@@ -35,7 +80,7 @@ export const Input: React.FC<InputProps> = (props) => {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (props.type === "autocomplete" || props.type === "select") {
-      setValue(e.target.value);
+      setInputValue(e.target.value);
     } else {
       props.setValue && props.setValue(e.target.value);
     }
@@ -78,7 +123,7 @@ export const Input: React.FC<InputProps> = (props) => {
           style={{ width: props.width, height: props.height }}
           value={
             props.type === "autocomplete" || props.type === "select"
-              ? value
+              ? inputValue
               : props.value
           }
           onChange={handleChange}
@@ -88,35 +133,16 @@ export const Input: React.FC<InputProps> = (props) => {
       {props.error && <div className="input__error">{props.error}</div>}
       {(props.type === "autocomplete" || props.type === "select") &&
         menuOpened && (
-          <div
-            data-testid="autocomplete-dropdown-menu"
-            className={`dropdown-menu dropdown-menu--${props.variant}`}
-            ref={menuRef}
-          >
-            {filteredData?.map((element, index) => (
-              <div
-                key={index}
-                data-testid="autocomplete-dropdown-menu-element"
-                className={`dropdown-menu__element 
-              dropdown-menu__element--${props.size} 
-              dropdown-menu__element--${props.variant}
-               ${
-                 props.value === element.value
-                   ? `dropdown-menu__element--selected--${props.variant}`
-                   : ""
-               } 
-              
-              `}
-                onClick={() => {
-                  setMenuOpened(false);
-                  setValue(element.label);
-                  props.setValue && props.setValue(element.value);
-                }}
-              >
-                {element.label}
-              </div>
-            ))}
-          </div>
+          <DropdownMenu
+            value={inputValue || ""}
+            data={props.data || []}
+            variant={props.variant || "light"}
+            menuRef={menuRef}
+            size={props.size || "sm"}
+            setMenuOpened={setMenuOpened}
+            setValue={props.setValue}
+            setInputValue={setInputValue}
+          />
         )}
     </div>
   );

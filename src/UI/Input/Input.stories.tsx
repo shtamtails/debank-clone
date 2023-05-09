@@ -2,7 +2,6 @@ import { Meta, StoryObj } from "@storybook/react";
 import { Input } from "./Input";
 import { BiLockAlt } from "react-icons/bi";
 import { HiSave, HiSearch } from "react-icons/hi";
-import { AutocompleteData } from "../Autocomplete/Autocomplete.model";
 import { useState } from "react";
 import { SelectData } from "./Input.model";
 
