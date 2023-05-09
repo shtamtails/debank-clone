@@ -1,6 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Input } from "./Input";
 import { BiLockAlt } from "react-icons/bi";
+import { HiSave } from "react-icons/hi";
+import { AutocompleteData } from "../Autocomplete/Autocomplete.model";
+import { useState } from "react";
 
 const meta: Meta<typeof Input> = {
   title: "UI/Input",
@@ -19,18 +22,24 @@ export default meta;
 type Story = StoryObj<typeof Input>;
 
 export const Inputs = () => {
+  const [value, setValue] = useState("");
+
   return (
     <>
+      {value}
       <div className="story-container--dark">
         <Input
+          value={value}
+          setValue={setValue}
+          fullWidth
           label="Full name"
           required
           variant="dark"
-          value="Hello World!"
           description="Description"
           mb="lg"
         />
         <Input
+          fullWidth
           label="Full name"
           required
           variant="dark"
@@ -40,8 +49,9 @@ export const Inputs = () => {
         />
       </div>
       <div className="story-container--light">
-        <Input placeholder="Placeholder" variant="light" mb="lg" />
+        <Input fullWidth placeholder="Placeholder" variant="light" mb="lg" />
         <Input
+          fullWidth
           label="Full name"
           required
           variant="light"
@@ -57,6 +67,8 @@ export const Inputs = () => {
 export const InputWithIcon = () => {
   return (
     <Input
+      label="Input with icon"
+      description="Input with icon"
       placeholder="Password"
       variant="light"
       icon={<BiLockAlt />}
@@ -70,6 +82,7 @@ export const InputSizes = () => {
     <>
       <div className="story-container--light">
         <Input
+          icon={<HiSave />}
           placeholder="Placeholder"
           description="Description"
           label="Label"
@@ -78,6 +91,7 @@ export const InputSizes = () => {
           size="xs"
         />
         <Input
+          icon={<HiSave />}
           placeholder="Placeholder"
           description="Description"
           label="Label"
@@ -86,6 +100,7 @@ export const InputSizes = () => {
           size="sm"
         />
         <Input
+          icon={<HiSave />}
           placeholder="Placeholder"
           description="Description"
           label="Label"
@@ -94,6 +109,7 @@ export const InputSizes = () => {
           size="md"
         />
         <Input
+          icon={<HiSave />}
           placeholder="Placeholder"
           description="Description"
           label="Label"
@@ -102,6 +118,7 @@ export const InputSizes = () => {
           size="lg"
         />
         <Input
+          icon={<HiSave />}
           placeholder="Placeholder"
           description="Description"
           label="Label"
@@ -120,4 +137,35 @@ export const TextInput: Story = {
     label: "Full name",
     required: true,
   },
+};
+
+export const Autocomplete = () => {
+  const data: AutocompleteData[] = [
+    {
+      value: "react",
+      label: "React",
+    },
+    {
+      value: "angular",
+      label: "Angular",
+    },
+    {
+      value: "vue",
+      label: "Vue",
+    },
+  ];
+
+  const [value, setValue] = useState<string>("");
+
+  return (
+    <Input
+      type="autocomplete"
+      data={data}
+      variant="light"
+      label="Autocomplete"
+      description="Input with autocomplete"
+      value={value}
+      setValue={setValue}
+    />
+  );
 };

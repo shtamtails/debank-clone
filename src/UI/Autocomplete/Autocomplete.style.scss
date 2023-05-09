@@ -1,0 +1,98 @@
+@use "../../style/colors" as *;
+
+.dropdown-menu {
+  z-index: 10;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  margin-top: 4px;
+  border-radius: 4px;
+
+  outline: 1px solid $gray-4;
+  background-color: #ffffff;
+
+  &--light {
+    outline: 1px solid $gray-4;
+    background-color: #ffffff;
+  }
+
+  &--dark {
+    outline: 1px solid $dark-4;
+    background-color: $dark-6;
+    color: $gray-5;
+  }
+
+  &__element {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    height: 2.25rem !important;
+    line-height: 2.125rem !important;
+    font-size: 0.875rem !important;
+
+    &:hover {
+      background-color: $gray-1;
+    }
+
+    &--xs {
+      height: 1.875rem !important;
+      line-height: 1.7rem !important;
+      font-size: 0.75rem !important;
+    }
+
+    &--sm {
+      height: 2.25rem !important;
+      line-height: 2.125rem !important;
+      font-size: 0.875rem !important;
+    }
+    &--md {
+      height: 2.625rem !important;
+      line-height: 2.5rem !important;
+      font-size: 1rem !important;
+    }
+    &--lg {
+      height: 3.125rem !important;
+      line-height: 3rem !important;
+      font-size: 1.125rem !important;
+    }
+    &--xl {
+      height: 3.75rem !important;
+      line-height: 3.625rem !important;
+      font-size: 1.25rem !important;
+    }
+
+    &--light {
+      &:hover {
+        background-color: $gray-1;
+      }
+    }
+
+    &--dark {
+      &:hover {
+        background-color: $gray-8;
+      }
+    }
+
+    &--selected--light {
+      background-color: $blue-7;
+      color: #ffffff;
+      &:hover {
+        background-color: $blue-8;
+        color: #ffffff;
+      }
+    }
+
+    &--selected--dark {
+      background-color: $blue-7;
+      color: #ffffff;
+      &:hover {
+        background-color: $blue-8;
+        color: #ffffff;
+      }
+    }
+  }
+}

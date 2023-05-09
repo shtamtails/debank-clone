@@ -1,19 +1,21 @@
-import { useState, useRef, ChangeEvent } from "react";
-import { useClickOutside } from "../../hooks/useClickOutside";
+import { AutocompleteProps } from "./Autocomplete.model";
 import { getInputClassNames } from "../../utils/getClassName/getClassName";
-import { InputProps } from "./Input.model";
-import "./Input.style.scss";
+import "../Input/Input.style.scss";
+import "./Autocomplete.style.scss";
+import { useRef, useState } from "react";
+import { useClickOutside } from "../../hooks/useClickOutside";
 
-export const Input: React.FC<InputProps> = (props) => {
+// ! DEPRECATED! USE <INPUT TYPE="AUTOCOMPLETE" /> INSTEAD!
+
+export const Autocomplete: React.FC<AutocompleteProps> = (props) => {
   const [menuOpened, setMenuOpened] = useState(false);
 
   const [value, setValue] = useState(
-    props.data
-      ? props.data.find((item) => item.value === props.value)?.label
-      : props.value
+    props.data.find((item) => item.value === props.value)?.label
   );
+
   const filteredData = value
-    ? props.data?.filter((el) =>
+    ? props.data.filter((el) =>
         el.label.toLowerCase().includes(value?.toLowerCase())
       )
     : props.data;
@@ -25,24 +27,13 @@ export const Input: React.FC<InputProps> = (props) => {
     setMenuOpened(false);
   });
 
+  // Get classnames for element to style them (sizes, theme, color, paddings, etc.)
   const {
     inputClassName,
     descriptionClassName,
     labelClassName,
     containerClassName,
   } = getInputClassNames(props);
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (props.type === "autocomplete") {
-      setValue(e.target.value);
-    } else {
-      props.setValue && props.setValue(e.target.value);
-    }
-  };
-
-  const handleClick = () => {
-    setMenuOpened(!menuOpened);
-  };
 
   return (
     <div
@@ -63,24 +54,28 @@ export const Input: React.FC<InputProps> = (props) => {
         {props.icon && <div className="input__icon">{props.icon}</div>}
         <input
           ref={inputRef}
-          type={props.type}
           data-testid={props.testId}
           disabled={props.disabled}
           placeholder={props.placeholder}
           className={inputClassName}
           style={{ width: props.width, height: props.height }}
-          value={props.type === "autocomplete" ? value : props.value}
-          onChange={handleChange}
-          onClick={handleClick}
+          value={value}
+          onChange={(e) => {
+            setValue(e.target.value);
+          }}
+          onClick={() => {
+            setMenuOpened(!menuOpened);
+          }}
         />
       </div>
+
       {props.error && <div className="input__error">{props.error}</div>}
-      {props.type === "autocomplete" && menuOpened && (
+      {menuOpened && (
         <div
           className={`dropdown-menu dropdown-menu--${props.variant}`}
           ref={menuRef}
         >
-          {filteredData?.map((element) => (
+          {filteredData.map((element) => (
             <div
               className={`dropdown-menu__element 
               dropdown-menu__element--${props.size} 
