@@ -77,11 +77,14 @@ export const Input: React.FC<InputProps> = (props) => {
       {props.error && <div className="input__error">{props.error}</div>}
       {props.type === "autocomplete" && menuOpened && (
         <div
+          data-testid="autocomplete-dropdown-menu"
           className={`dropdown-menu dropdown-menu--${props.variant}`}
           ref={menuRef}
         >
-          {filteredData?.map((element) => (
+          {filteredData?.map((element, index) => (
             <div
+              key={index}
+              data-testid="autocomplete-dropdown-menu-element"
               className={`dropdown-menu__element 
               dropdown-menu__element--${props.size} 
               dropdown-menu__element--${props.variant}

@@ -1,4 +1,9 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import {
+  render,
+  screen,
+  fireEvent,
+  queryByTestId,
+} from "@testing-library/react";
 import { Input } from "./Input";
 import { expect, describe, it, vi } from "vitest";
 import { HiSearch } from "react-icons/hi";
@@ -105,5 +110,70 @@ describe("Input", () => {
       "type",
       "email"
     );
+  });
+});
+
+describe("Input - Autocomplete", () => {
+  const data = [
+    {
+      value: "vue",
+      label: "Vue",
+    },
+    {
+      value: "react",
+      label: "React",
+    },
+  ];
+
+  it("should render dropdown menu correctly when clicked", () => {
+    const { getByTestId, queryAllByTestId } = render(
+      <Input testId="autocomplete-input" data={data} type="autocomplete" />
+    );
+    const inputElement = getByTestId("autocomplete-input");
+    fireEvent.click(inputElement);
+    const dropdownMenu = getByTestId("autocomplete-dropdown-menu");
+
+    const dropdownMenuElements = queryAllByTestId(
+      "autocomplete-dropdown-menu-element"
+    );
+
+    expect(dropdownMenu).toBeInTheDocument();
+    expect(dropdownMenuElements.length).toBe(2);
+    expect(dropdownMenuElements[0]).toHaveTextContent("Vue");
+  });
+
+  it("should select 'Vue' option when clicked", () => {
+    const { getByTestId, queryAllByTestId } = render(
+      <Input data={data} type="autocomplete" testId="autocomplete-input" />
+    );
+
+    const inputElement = getByTestId("autocomplete-input");
+    fireEvent.click(inputElement);
+
+    const dropdownMenuElements = queryAllByTestId(
+      "autocomplete-dropdown-menu-element"
+    );
+
+    fireEvent.click(dropdownMenuElements[0]);
+
+    expect(inputElement).toHaveValue("Vue");
+  });
+
+  it("should filter options based on input value", () => {
+    const { getByTestId, queryByText, queryAllByTestId } = render(
+      <Input data={data} type="autocomplete" testId="autocomplete-input" />
+    );
+
+    const inputElement = getByTestId("autocomplete-input");
+    fireEvent.click(inputElement);
+    fireEvent.change(inputElement, { target: { value: "Vu" } });
+
+    const dropdownMenuElements = queryAllByTestId(
+      "autocomplete-dropdown-menu-element"
+    );
+
+    const unfilteredOption = queryByText("React");
+    expect(dropdownMenuElements[0]).toBeInTheDocument();
+    expect(unfilteredOption).toBeNull();
   });
 });

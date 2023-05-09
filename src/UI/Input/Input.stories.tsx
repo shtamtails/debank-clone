@@ -142,16 +142,8 @@ export const TextInput: Story = {
 export const Autocomplete = () => {
   const data: AutocompleteData[] = [
     {
-      value: "react",
-      label: "React",
-    },
-    {
-      value: "angular",
-      label: "Angular",
-    },
-    {
-      value: "vue",
-      label: "Vue",
+      value: "test",
+      label: "Test",
     },
   ];
 
