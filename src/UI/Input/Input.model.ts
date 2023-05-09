@@ -1,9 +1,10 @@
 import { ReactNode } from "react";
 import { SharedUIProps } from "../models";
-import { AutocompleteData } from "../Autocomplete/Autocomplete.model";
+
+export type SelectData = { value: string; label: string };
 
 export interface InputProps extends Omit<SharedUIProps, "color"> {
-  data?: AutocompleteData[];
+  data?: SelectData[];
   value?: string;
   setValue?: (arg0: string) => void;
   label?: string;
@@ -20,5 +21,6 @@ export interface InputProps extends Omit<SharedUIProps, "color"> {
     | "text"
     | "url"
     | "email"
-    | "autocomplete";
+    | "autocomplete"
+    | "select";
 }

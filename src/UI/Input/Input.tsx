@@ -2,6 +2,7 @@ import { useState, useRef, ChangeEvent } from "react";
 import { useClickOutside } from "../../hooks/useClickOutside";
 import { getInputClassNames } from "../../utils/getClassName/getClassName";
 import { InputProps } from "./Input.model";
+import { IoMdArrowDropdown } from "react-icons/io";
 import "./Input.style.scss";
 
 export const Input: React.FC<InputProps> = (props) => {
@@ -33,7 +34,7 @@ export const Input: React.FC<InputProps> = (props) => {
   } = getInputClassNames(props);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (props.type === "autocomplete") {
+    if (props.type === "autocomplete" || props.type === "select") {
       setValue(e.target.value);
     } else {
       props.setValue && props.setValue(e.target.value);
@@ -61,7 +62,13 @@ export const Input: React.FC<InputProps> = (props) => {
       )}
       <div className="input-wrapper">
         {props.icon && <div className="input__icon">{props.icon}</div>}
+        {props.type === "select" && (
+          <div className="input__dropdown-icon">
+            <IoMdArrowDropdown />
+          </div>
+        )}
         <input
+          readOnly={props.type === "select"}
           ref={inputRef}
           type={props.type}
           data-testid={props.testId}
@@ -69,23 +76,28 @@ export const Input: React.FC<InputProps> = (props) => {
           placeholder={props.placeholder}
           className={inputClassName}
           style={{ width: props.width, height: props.height }}
-          value={props.type === "autocomplete" ? value : props.value}
+          value={
+            props.type === "autocomplete" || props.type === "select"
+              ? value
+              : props.value
+          }
           onChange={handleChange}
           onClick={handleClick}
         />
       </div>
       {props.error && <div className="input__error">{props.error}</div>}
-      {props.type === "autocomplete" && menuOpened && (
-        <div
-          data-testid="autocomplete-dropdown-menu"
-          className={`dropdown-menu dropdown-menu--${props.variant}`}
-          ref={menuRef}
-        >
-          {filteredData?.map((element, index) => (
-            <div
-              key={index}
-              data-testid="autocomplete-dropdown-menu-element"
-              className={`dropdown-menu__element 
+      {(props.type === "autocomplete" || props.type === "select") &&
+        menuOpened && (
+          <div
+            data-testid="autocomplete-dropdown-menu"
+            className={`dropdown-menu dropdown-menu--${props.variant}`}
+            ref={menuRef}
+          >
+            {filteredData?.map((element, index) => (
+              <div
+                key={index}
+                data-testid="autocomplete-dropdown-menu-element"
+                className={`dropdown-menu__element 
               dropdown-menu__element--${props.size} 
               dropdown-menu__element--${props.variant}
                ${
@@ -95,17 +107,17 @@ export const Input: React.FC<InputProps> = (props) => {
                } 
               
               `}
-              onClick={() => {
-                setMenuOpened(false);
-                setValue(element.label);
-                props.setValue && props.setValue(element.value);
-              }}
-            >
-              {element.label}
-            </div>
-          ))}
-        </div>
-      )}
+                onClick={() => {
+                  setMenuOpened(false);
+                  setValue(element.label);
+                  props.setValue && props.setValue(element.value);
+                }}
+              >
+                {element.label}
+              </div>
+            ))}
+          </div>
+        )}
     </div>
   );
 };

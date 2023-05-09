@@ -1,9 +1,10 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Input } from "./Input";
 import { BiLockAlt } from "react-icons/bi";
-import { HiSave } from "react-icons/hi";
+import { HiSave, HiSearch } from "react-icons/hi";
 import { AutocompleteData } from "../Autocomplete/Autocomplete.model";
 import { useState } from "react";
+import { SelectData } from "./Input.model";
 
 const meta: Meta<typeof Input> = {
   title: "UI/Input",
@@ -140,7 +141,7 @@ export const TextInput: Story = {
 };
 
 export const Autocomplete = () => {
-  const data: AutocompleteData[] = [
+  const data: SelectData[] = [
     {
       value: "test",
       label: "Test",
@@ -156,6 +157,30 @@ export const Autocomplete = () => {
       variant="light"
       label="Autocomplete"
       description="Input with autocomplete"
+      value={value}
+      setValue={setValue}
+    />
+  );
+};
+
+export const Select = () => {
+  const data: SelectData[] = [
+    {
+      value: "test",
+      label: "Test",
+    },
+  ];
+
+  const [value, setValue] = useState<string>("");
+
+  return (
+    <Input
+      icon={<HiSearch />}
+      type="select"
+      data={data}
+      variant="light"
+      label="Select"
+      description="Select input"
       value={value}
       setValue={setValue}
     />

@@ -48,6 +48,7 @@ export const getInputClassNames = (props: InputProps) => {
     );
   props.error && defaultClassName.push("input--error");
   props.icon && defaultClassName.push("input--with-icon");
+  props.type === "select" && defaultClassName.push("input--select");
 
   const inputClassName = getClassName({
     defaultClassName: defaultClassName.join(" ").trim(),
