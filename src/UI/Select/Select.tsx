@@ -1,12 +1,13 @@
-import { AutocompleteProps } from "./Autocomplete.model";
-import { getInputClassNames } from "../../utils/getClassName/getClassName";
-import { useRef, useState } from "react";
+import { RiArrowDropDownLine } from "react-icons/ri";
+import { useState, useRef } from "react";
 import { useClickOutside } from "../../hooks/useClickOutside";
+import { getInputClassNames } from "../../utils/getClassName/getClassName";
 import { DropdownMenu } from "../DropdownMenu/DropdownMenu";
+import { SelectProps } from "./Select.modules";
 import { InputWrapper } from "../InputWrapper/InputWrapper";
-import "./Autocomplete.style.scss";
+import "./Select.styles.scss";
 
-export const Autocomplete: React.FC<AutocompleteProps> = (props) => {
+export const Select: React.FC<SelectProps> = (props) => {
   const [menuOpened, setMenuOpened] = useState(false);
 
   const [label, setLabel] = useState(
@@ -15,35 +16,30 @@ export const Autocomplete: React.FC<AutocompleteProps> = (props) => {
 
   const menuRef = useRef(null);
   const inputRef = useRef(null);
-
-  useClickOutside(menuRef, inputRef, () => {
-    setMenuOpened(false);
-  });
+  useClickOutside(menuRef, inputRef, () => setMenuOpened(false));
 
   const { inputClassName } = getInputClassNames(props);
 
-  const filteredData = label
-    ? props.data.filter((el) =>
-        el.label.toLowerCase().includes(label?.toLowerCase())
-      )
-    : props.data;
-
   return (
     <InputWrapper {...props}>
+      <div className="input__dropdown-icon">
+        <RiArrowDropDownLine />
+      </div>
       <input
+        readOnly
         ref={inputRef}
         data-testid={props.testId}
         disabled={props.disabled}
         placeholder={props.placeholder}
         className={inputClassName}
-        style={{ width: props.width, height: props.height }}
+        style={{ width: props.width, height: props.height, cursor: "pointer" }}
         value={label}
         onChange={(e) => setLabel(e.target.value)}
         onClick={() => setMenuOpened(!menuOpened)}
       />
       {menuOpened && (
         <DropdownMenu
-          data={filteredData}
+          data={props.data}
           variant={props.variant}
           size={props.size || "sm"}
           setMenuOpened={setMenuOpened}

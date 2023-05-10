@@ -81,6 +81,7 @@ export const getInputClassNames = (props: InputProps) => {
   props.mt && rawContainerClassName.push(`margin-top-${props.mt}`);
   props.mb && rawContainerClassName.push(`margin-bottom-${props.mb}`);
   props.radius && rawContainerClassName.push(`border-radius-${props.radius}`);
+  props.className && rawContainerClassName.push(props.className);
 
   const containerClassName = rawContainerClassName.join(" ").trim();
   const labelClassName = rawLabelClassName.join(" ").trim();

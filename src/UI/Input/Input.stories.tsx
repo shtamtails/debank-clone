@@ -3,7 +3,6 @@ import { Input } from "./Input";
 import { BiLockAlt } from "react-icons/bi";
 import { HiSave, HiSearch } from "react-icons/hi";
 import { useState } from "react";
-import { SelectData } from "./Input.model";
 
 const meta: Meta<typeof Input> = {
   title: "UI/Input",
@@ -137,51 +136,4 @@ export const TextInput: Story = {
     label: "Full name",
     required: true,
   },
-};
-
-export const Autocomplete = () => {
-  const data: SelectData[] = [
-    {
-      value: "test",
-      label: "Test",
-    },
-  ];
-
-  const [value, setValue] = useState<string>("");
-
-  return (
-    <Input
-      type="autocomplete"
-      data={data}
-      variant="light"
-      label="Autocomplete"
-      description="Input with autocomplete"
-      value={value}
-      setValue={setValue}
-    />
-  );
-};
-
-export const Select = () => {
-  const data: SelectData[] = [
-    {
-      value: "test",
-      label: "Test",
-    },
-  ];
-
-  const [value, setValue] = useState<string>("");
-
-  return (
-    <Input
-      icon={<HiSearch />}
-      type="select"
-      data={data}
-      variant="light"
-      label="Select"
-      description="Select input"
-      value={value}
-      setValue={setValue}
-    />
-  );
 };

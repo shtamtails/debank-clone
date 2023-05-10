@@ -1,0 +1,180 @@
+@use "../../style/colors" as *;
+
+.input {
+  position: relative;
+  .input-wrapper {
+    position: relative;
+    .input__icon {
+      color: $gray-5;
+      position: absolute;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      left: 8px;
+    }
+
+    input {
+      width: 100%;
+      height: 2.25rem;
+      border-radius: 4px;
+      padding-left: 12px;
+      transition: all 0.1s ease;
+      &:focus {
+        outline: 1px solid $blue-6;
+      }
+    }
+  }
+
+  &--select {
+    cursor: pointer;
+  }
+
+  &--with-icon {
+    padding-left: 32px !important;
+  }
+
+  &--light {
+    outline: 1px solid $gray-4;
+    background-color: #ffffff;
+    &::placeholder {
+      color: $gray-5;
+    }
+  }
+
+  &--dark {
+    outline: 1px solid $dark-4;
+    background-color: $dark-6;
+    color: $gray-5;
+    &::placeholder {
+      color: $dark-3;
+    }
+  }
+
+  &--error {
+    outline: 1px solid $red-6 !important;
+  }
+
+  &--xs {
+    height: 1.875rem !important;
+    line-height: 1.7rem !important;
+    font-size: 0.75rem !important;
+  }
+  &--sm {
+    height: 2.25rem !important;
+    line-height: 2.125rem !important;
+    font-size: 0.875rem !important;
+  }
+  &--md {
+    height: 2.625rem !important;
+    line-height: 2.5rem !important;
+    font-size: 1rem !important;
+  }
+  &--lg {
+    height: 3.125rem !important;
+    line-height: 3rem !important;
+    font-size: 1.125rem !important;
+  }
+  &--xl {
+    height: 3.75rem !important;
+    line-height: 3.625rem !important;
+    font-size: 1.25rem !important;
+  }
+}
+
+.input__description {
+  font-size: 0.75rem;
+  margin-bottom: 6px;
+
+  &--light {
+    color: $gray-6;
+  }
+  &--dark {
+    color: $gray-6;
+  }
+
+  &--xs {
+    font-size: 0.625rem !important;
+  }
+  &--sm {
+    font-size: 0.75rem !important;
+  }
+  &--md {
+    font-size: 0.875rem !important;
+  }
+  &--lg {
+    font-size: 1rem !important;
+  }
+  &--xl {
+    font-size: 1.125rem !important;
+  }
+}
+
+.input__error {
+  margin-top: 6px;
+  font-size: 0.875rem !important;
+  color: $red-6;
+
+  &--xs {
+    font-size: 0.75rem !important;
+  }
+  &--sm {
+    font-size: 0.875rem !important;
+  }
+  &--md {
+    font-size: 1rem !important;
+  }
+  &--lg {
+    font-size: 1.125rem !important;
+  }
+  &--xl {
+    font-size: 1.25rem !important;
+  }
+}
+
+.input__label {
+  display: flex;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 3px;
+
+  &--dark {
+    color: $gray-5;
+  }
+
+  &--light {
+    color: $dark-5;
+  }
+
+  &--required {
+    margin-left: 4px;
+    color: $red-6;
+  }
+
+  &--xs {
+    font-size: 0.75rem !important;
+  }
+  &--sm {
+    font-size: 0.875rem !important;
+  }
+  &--md {
+    font-size: 1rem !important;
+  }
+  &--lg {
+    font-size: 1.125rem !important;
+  }
+  &--xl {
+    font-size: 1.25rem !important;
+  }
+}
+
+.story-container {
+  &--light {
+    padding: 20px;
+    background-color: #ffffff;
+  }
+  &--dark {
+    color: #fff;
+    padding: 20px;
+    background-color: #1a1b1e;
+  }
+}
