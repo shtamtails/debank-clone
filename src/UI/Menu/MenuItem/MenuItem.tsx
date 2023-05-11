@@ -4,7 +4,7 @@ import "./MenuItem.styles.scss";
 export const MenuItem: React.FC<MenuItemProps> = (props) => {
   return (
     <button
-      className="menu__item"
+      className={`menu__item menu__item--${props.variant}`}
       onClick={props.onClick}
       data-testid={props.testId}
     >

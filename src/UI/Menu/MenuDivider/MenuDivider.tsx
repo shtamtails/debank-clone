@@ -1,5 +1,9 @@
 import "./MenuDivider.styles.scss";
 
-export const MenuDivider: React.FC = () => {
-  return <div className="menu__divider" />;
+interface MenuDividerProps {
+  variant?: "light" | "dark";
+}
+
+export const MenuDivider: React.FC<MenuDividerProps> = (props) => {
+  return <div className={`menu__divider menu__divider--${props.variant}`} />;
 };

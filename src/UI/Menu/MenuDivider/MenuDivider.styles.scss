@@ -5,4 +5,10 @@
   height: 1px;
   width: 100%;
   background-color: $gray-2;
+  &--light {
+    background-color: $gray-2;
+  }
+  &--dark {
+    background-color: #383a40;
+  }
 }

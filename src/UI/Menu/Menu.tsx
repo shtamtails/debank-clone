@@ -7,7 +7,16 @@ import { MenuDivider } from "./MenuDivider/MenuDivider";
 import "./Menu.style.scss";
 
 export const Menu = (props: MenuProps) => {
-  const { width, children, target, visible, setVisible, testId } = props;
+  const {
+    width,
+    children,
+    target,
+    visible,
+    setVisible,
+    testId,
+    className,
+    variant,
+  } = props;
   const [opacity, setOpacity] = useState(0);
   const [targetCords, setTargetCords] = useState<CordsType>({
     x: 0,
@@ -38,6 +47,14 @@ export const Menu = (props: MenuProps) => {
   };
 
   useClickOutside(menuRef, target, handleOutsideClick);
+
+  const getClassName = () => {
+    const defaultClassName = ["menu"];
+    defaultClassName.push(`menu--${variant}`);
+    className && defaultClassName.push(className);
+    return defaultClassName.join(" ").trim();
+  };
+
   return (
     <div
       data-testid={testId}
@@ -45,7 +62,7 @@ export const Menu = (props: MenuProps) => {
         opacity === 0 && visible && setVisible(false);
       }}
       ref={menuRef}
-      className="menu"
+      className={getClassName()}
       style={{
         top: targetCords.y + targetCords.height,
         left: targetCords.x,

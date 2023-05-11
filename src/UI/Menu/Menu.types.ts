@@ -14,4 +14,6 @@ export interface MenuProps {
   setVisible: (arg0: boolean) => void;
   width?: number | string;
   testId?: string;
+  className?: string;
+  variant?: "light" | "dark";
 }

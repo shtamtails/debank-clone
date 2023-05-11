@@ -6,4 +6,5 @@ export interface MenuItemProps {
   rightContent?: ReactNode;
   onClick?: () => void;
   testId?: string;
+  variant?: "dark" | "light";
 }

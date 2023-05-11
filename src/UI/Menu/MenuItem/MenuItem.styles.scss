@@ -12,6 +12,22 @@
   &:hover {
     background-color: $gray-1;
   }
+
+  &--light {
+    background-color: #fff;
+    &:hover {
+      background-color: $gray-1;
+    }
+  }
+
+  &--dark {
+    background-color: #25262c;
+    color: #c1c2c5;
+    &:hover {
+      background-color: #383a40;
+    }
+  }
+
   &__children {
     flex: 1;
   }

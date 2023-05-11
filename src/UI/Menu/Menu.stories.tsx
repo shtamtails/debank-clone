@@ -25,19 +25,26 @@ export default meta;
 type Story = StoryObj<typeof Menu>;
 
 export const MenuRegular = () => {
-  const [menuVisible, setMenuVisible] = useState(true);
-  const buttonRef: RefObject<HTMLButtonElement> = useRef(null);
+  const [lightMenuVisible, setLightMenuVisible] = useState(false);
+  const [darkMenuVisible, setDarkMenuVisible] = useState(false);
+  const lightButtonRef: RefObject<HTMLButtonElement> = useRef(null);
+  const darkButtonRef: RefObject<HTMLButtonElement> = useRef(null);
 
   return (
-    <>
-      <Button ref={buttonRef} onClick={() => setMenuVisible(true)}>
-        Toggle menu
+    <div className="flex">
+      <Button
+        mr="xl"
+        variant="light"
+        ref={lightButtonRef}
+        onClick={() => setLightMenuVisible(true)}
+      >
+        Toggle light menu
       </Button>
-      {menuVisible && (
+      {lightMenuVisible && (
         <Menu
-          target={buttonRef}
-          visible={menuVisible}
-          setVisible={setMenuVisible}
+          target={lightButtonRef}
+          visible={lightMenuVisible}
+          setVisible={setLightMenuVisible}
         >
           <Menu.Label>Application</Menu.Label>
           <Menu.Item icon={<FiSettings />}>Settings</Menu.Item>
@@ -50,6 +57,43 @@ export const MenuRegular = () => {
           <Menu.Item icon={<FiTrash />}>Delete my account</Menu.Item>
         </Menu>
       )}
-    </>
+      <Button
+        color="dark"
+        ref={darkButtonRef}
+        onClick={() => setDarkMenuVisible(true)}
+      >
+        Toggle dark menu
+      </Button>
+      {darkMenuVisible && (
+        <Menu
+          variant="dark"
+          target={darkButtonRef}
+          visible={darkMenuVisible}
+          setVisible={setDarkMenuVisible}
+        >
+          <Menu.Label>Application</Menu.Label>
+          <Menu.Item variant="dark" icon={<FiSettings />}>
+            Settings
+          </Menu.Item>
+          <Menu.Item variant="dark" icon={<FiMessageCircle />}>
+            Messages
+          </Menu.Item>
+          <Menu.Item variant="dark" icon={<FiImage />}>
+            Gallery
+          </Menu.Item>
+          <Menu.Item variant="dark" icon={<FiSearch />}>
+            Search
+          </Menu.Item>
+          <Menu.Divider variant="dark" />
+          <Menu.Label>Danger Zone</Menu.Label>
+          <Menu.Item variant="dark" icon={<FiDownload />}>
+            Transfer my data
+          </Menu.Item>
+          <Menu.Item variant="dark" icon={<FiTrash />}>
+            Delete my account
+          </Menu.Item>
+        </Menu>
+      )}
+    </div>
   );
 };
