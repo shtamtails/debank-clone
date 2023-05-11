@@ -1,0 +1,29 @@
+@use "../../../style/colors" as *;
+
+.menu__item {
+  text-align: start;
+  background-color: #fff;
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  display: flex;
+  font-size: 0.875rem;
+  &:hover {
+    background-color: $gray-1;
+  }
+  &__children {
+    flex: 1;
+  }
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &--left {
+      padding-right: 8px;
+    }
+    &--right {
+      color: $gray-6;
+    }
+  }
+}
