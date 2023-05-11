@@ -1,10 +1,25 @@
-import { useEffect, useRef, useState } from "react";
-import { CordsType, MenuProps } from "./Menu.types";
+import { ReactNode, RefObject, useEffect, useRef, useState } from "react";
 import { useClickOutside } from "../../hooks/useClickOutside";
 import { MenuLabel } from "./MenuLabel/MenuLabel";
 import { MenuItem } from "./MenuItem/MenuItem";
 import { MenuDivider } from "./MenuDivider/MenuDivider";
 import "./Menu.style.scss";
+import { DefaultProps } from "../models";
+
+export type CordsType = {
+  x: number;
+  y: number;
+  height: number;
+  width: number;
+};
+
+export interface MenuProps extends DefaultProps {
+  children: ReactNode;
+  target: RefObject<HTMLButtonElement>;
+  visible: boolean;
+  setVisible: (arg0: boolean) => void;
+  width?: number | string;
+}
 
 export const Menu = (props: MenuProps) => {
   const {
@@ -16,6 +31,7 @@ export const Menu = (props: MenuProps) => {
     testId,
     className,
     variant,
+    style,
   } = props;
   const [opacity, setOpacity] = useState(0);
   const [targetCords, setTargetCords] = useState<CordsType>({
@@ -68,6 +84,7 @@ export const Menu = (props: MenuProps) => {
         left: targetCords.x,
         opacity,
         width,
+        ...style,
       }}
     >
       {children}

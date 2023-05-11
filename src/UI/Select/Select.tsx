@@ -1,17 +1,34 @@
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { useState, useRef } from "react";
 import { useClickOutside } from "../../hooks/useClickOutside";
-import { getInputClassNames } from "../../utils/getClassName/getClassName";
-import { DropdownMenu } from "../DropdownMenu/DropdownMenu";
-import { SelectProps } from "./Select.modules";
-import { InputWrapper } from "../InputWrapper/InputWrapper";
+import { DropdownMenu, DropdownMenuData } from "../DropdownMenu/DropdownMenu";
+import { InputProps, InputWrapper } from "../InputWrapper/InputWrapper";
 import "./Select.styles.scss";
+import { getInputClassNames } from "../../utils/getClassName/getInputClassName";
+
+export interface SelectProps extends Omit<InputProps, "type"> {
+  data: DropdownMenuData[];
+}
 
 export const Select: React.FC<SelectProps> = (props) => {
+  const {
+    testId,
+    disabled,
+    placeholder,
+    width,
+    height,
+    data,
+    style,
+    variant,
+    size,
+    value,
+    setValue,
+  } = props;
+
   const [menuOpened, setMenuOpened] = useState(false);
 
   const [label, setLabel] = useState(
-    props.data.find((item) => item.value === props.value)?.label
+    data.find((item) => item.value === value)?.label
   );
 
   const menuRef = useRef(null);
@@ -28,23 +45,29 @@ export const Select: React.FC<SelectProps> = (props) => {
       <input
         readOnly
         ref={inputRef}
-        data-testid={props.testId}
-        disabled={props.disabled}
-        placeholder={props.placeholder}
+        data-testid={testId}
+        disabled={disabled}
+        placeholder={placeholder}
         className={inputClassName}
-        style={{ width: props.width, height: props.height, cursor: "pointer" }}
+        style={{
+          width: width,
+          height: height,
+          cursor: "pointer",
+          ...style,
+        }}
         value={label}
         onChange={(e) => setLabel(e.target.value)}
         onClick={() => setMenuOpened(!menuOpened)}
       />
       {menuOpened && (
         <DropdownMenu
-          data={props.data}
-          variant={props.variant}
-          size={props.size || "sm"}
+          testId={testId && `${testId}-dropdown`}
+          data={data}
+          variant={variant}
+          size={size || "sm"}
           setMenuOpened={setMenuOpened}
-          value={props.value}
-          setValue={props.setValue}
+          value={value}
+          setValue={setValue}
           setLabel={setLabel}
           ref={menuRef}
         />

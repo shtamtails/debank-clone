@@ -1,13 +1,31 @@
-import { useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { ActionIcon } from "../ActionIcon/ActionIcon";
 import { AiOutlineClose } from "react-icons/ai";
 import "./Modal.styles.scss";
-import { ModalProps } from "./Modal.types";
 import { useClickOutside } from "../../hooks/useClickOutside";
+import { DefaultProps } from "../models";
+
+export interface ModalProps extends DefaultProps {
+  isOpened: boolean;
+  setIsOpened: (arg0: boolean) => void;
+  variant?: "light" | "dark";
+  title: string;
+  children: ReactNode;
+  width?: string | number;
+}
 
 export const Modal: React.FC<ModalProps> = (props) => {
-  const { children, title, isOpened, setIsOpened, variant, width, testId } =
-    props;
+  const {
+    children,
+    title,
+    isOpened,
+    setIsOpened,
+    variant,
+    width,
+    testId,
+    className,
+    style,
+  } = props;
 
   const [opacity, setOpacity] = useState(0);
 
@@ -23,6 +41,13 @@ export const Modal: React.FC<ModalProps> = (props) => {
 
   useClickOutside(modalRef, modalRef, handleOutsideClick);
 
+  const getModalContainerClassName = () => {
+    const defaultClassName = ["modal__inner__container"];
+    variant && defaultClassName.push(`modal__inner__container--${variant}`);
+    className && defaultClassName.push(className);
+    return defaultClassName.join(" ").trim();
+  };
+
   return (
     <div className="modal">
       <div
@@ -35,9 +60,9 @@ export const Modal: React.FC<ModalProps> = (props) => {
       />
       <div className="modal__inner">
         <div
-          className={`modal__inner__container modal__inner__container--${variant}`}
+          className={getModalContainerClassName()}
           data-testid={testId}
-          style={{ width, opacity }}
+          style={{ width, opacity, ...style }}
           ref={modalRef}
         >
           <div className="modal__inner__container__header">

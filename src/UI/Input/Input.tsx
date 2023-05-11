@@ -1,6 +1,5 @@
-import { getInputClassNames } from "../../utils/getClassName/getClassName";
-import { InputProps } from "./Input.model";
-import { InputWrapper } from "../InputWrapper/InputWrapper";
+import { getInputClassNames } from "../../utils/getClassName/getInputClassName";
+import { InputProps, InputWrapper } from "../InputWrapper/InputWrapper";
 import "./Input.style.scss";
 
 export const Input: React.FC<InputProps> = (props) => {

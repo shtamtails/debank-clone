@@ -1,14 +1,24 @@
-import { forwardRef, useState } from "react";
-import { ButtonProps } from "./Button.model";
+import { ReactNode, forwardRef, useState } from "react";
 import "./Button.style.scss";
 import { getStyles } from "../../utils/getStyles/getStyles";
 import { getClassName } from "../../utils/getClassName/getClassName";
+import { SharedUIProps, Variants } from "../models";
+
+export interface ButtonProps extends Omit<SharedUIProps, "variant"> {
+  children: ReactNode | JSX.Element | string;
+  type?: "button" | "submit" | "reset";
+  variant?: Variants;
+  leftIcon?: ReactNode;
+  rightIcon?: ReactNode;
+  onClick?: () => void;
+}
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
     const [hovered, setHovered] = useState<boolean>(false);
 
     const styles = getStyles(props);
+
     const className = getClassName({
       defaultClassName: "button",
       props,

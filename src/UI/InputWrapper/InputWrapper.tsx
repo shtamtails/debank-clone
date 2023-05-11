@@ -1,31 +1,67 @@
-import { getInputClassNames } from "../../utils/getClassName/getClassName";
+import { ReactNode } from "react";
 import "./InputWrapper.style.scss";
-import { InputWrapperProps } from "./InputWrapper.model";
+import { SharedUIProps } from "../models";
+import { getInputClassNames } from "../../utils/getClassName/getInputClassName";
+
+export interface InputProps extends Omit<SharedUIProps, "color"> {
+  value?: string;
+  setValue?: (arg0: string) => void;
+  label?: string;
+  required?: boolean;
+  variant: "dark" | "light";
+  placeholder?: string;
+  description?: string;
+  error?: string;
+  icon?: ReactNode;
+  type?:
+    | "number"
+    | "password"
+    | "search"
+    | "text"
+    | "url"
+    | "email"
+    | "autocomplete"
+    | "select";
+}
+
+export interface InputWrapperProps extends InputProps {
+  children: ReactNode;
+}
 
 export const InputWrapper: React.FC<InputWrapperProps> = (props) => {
+  const {
+    label,
+    required,
+    description,
+    icon,
+    children,
+    error,
+    width,
+    testId,
+    style,
+  } = props;
+
   const { descriptionClassName, labelClassName, containerClassName } =
     getInputClassNames(props);
 
   return (
     <div
-      data-testid="input-container"
+      data-testid={testId && `${testId}-wrapper`}
       className={containerClassName}
-      style={{ width: props.width }}
+      style={{ width, ...style }}
     >
-      {props.label && (
+      {label && (
         <label className={labelClassName}>
-          {props.label}
-          {props.required && <div className="input__label--required">*</div>}
+          {label}
+          {required && <div className="input__label--required">*</div>}
         </label>
       )}
-      {props.description && (
-        <div className={descriptionClassName}>{props.description}</div>
-      )}
+      {description && <div className={descriptionClassName}>{description}</div>}
       <div className="input-wrapper">
-        {props.icon && <div className="input__icon">{props.icon}</div>}
-        {props.children}
+        {icon && <div className="input__icon">{icon}</div>}
+        {children}
       </div>
-      {props.error && <div className="input__error">{props.error}</div>}
+      {error && <div className="input__error">{error}</div>}
     </div>
   );
 };

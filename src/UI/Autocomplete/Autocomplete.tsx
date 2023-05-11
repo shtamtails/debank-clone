@@ -1,16 +1,35 @@
-import { AutocompleteProps } from "./Autocomplete.model";
-import { getInputClassNames } from "../../utils/getClassName/getClassName";
 import { useRef, useState } from "react";
 import { useClickOutside } from "../../hooks/useClickOutside";
 import { DropdownMenu } from "../DropdownMenu/DropdownMenu";
-import { InputWrapper } from "../InputWrapper/InputWrapper";
+import { InputProps, InputWrapper } from "../InputWrapper/InputWrapper";
 import "./Autocomplete.style.scss";
+import { getInputClassNames } from "../../utils/getClassName/getInputClassName";
+
+export type AutocompleteData = { value: string; label: string };
+
+export interface AutocompleteProps extends Omit<InputProps, "type"> {
+  data: AutocompleteData[];
+}
 
 export const Autocomplete: React.FC<AutocompleteProps> = (props) => {
+  const {
+    testId,
+    disabled,
+    placeholder,
+    width,
+    height,
+    data,
+    style,
+    variant,
+    size,
+    value,
+    setValue,
+  } = props;
+
   const [menuOpened, setMenuOpened] = useState(false);
 
   const [label, setLabel] = useState(
-    props.data.find((item) => item.value === props.value)?.label
+    data.find((item) => item.value === value)?.label
   );
 
   const menuRef = useRef(null);
@@ -23,32 +42,31 @@ export const Autocomplete: React.FC<AutocompleteProps> = (props) => {
   const { inputClassName } = getInputClassNames(props);
 
   const filteredData = label
-    ? props.data.filter((el) =>
-        el.label.toLowerCase().includes(label?.toLowerCase())
-      )
-    : props.data;
+    ? data.filter((el) => el.label.toLowerCase().includes(label?.toLowerCase()))
+    : data;
 
   return (
     <InputWrapper {...props}>
       <input
         ref={inputRef}
-        data-testid={props.testId}
-        disabled={props.disabled}
-        placeholder={props.placeholder}
+        data-testid={testId}
+        disabled={disabled}
+        placeholder={placeholder}
         className={inputClassName}
-        style={{ width: props.width, height: props.height }}
+        style={{ width: width, height: height, ...style }}
         value={label}
         onChange={(e) => setLabel(e.target.value)}
         onClick={() => setMenuOpened(!menuOpened)}
       />
       {menuOpened && (
         <DropdownMenu
+          testId={testId && `${testId}-dropdown`}
           data={filteredData}
-          variant={props.variant}
-          size={props.size || "sm"}
+          variant={variant}
+          size={size || "sm"}
           setMenuOpened={setMenuOpened}
-          value={props.value}
-          setValue={props.setValue}
+          value={value}
+          setValue={setValue}
           setLabel={setLabel}
           ref={menuRef}
         />

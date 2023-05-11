@@ -1,8 +1,14 @@
 import "./ActionIcon.style.scss";
 import { getClassName } from "../../utils/getClassName/getClassName";
 import { getStyles } from "../../utils/getStyles/getStyles";
-import { useState } from "react";
-import { ActionIconProps } from "./ActionIcon.model";
+import { ReactNode, useState } from "react";
+import { SharedUIProps, Variants } from "../models";
+
+export interface ActionIconProps extends Omit<SharedUIProps, "variant"> {
+  variant?: Variants;
+  children: ReactNode;
+  onClick?: () => void;
+}
 
 export const ActionIcon: React.FC<ActionIconProps> = (props) => {
   const [hovered, setHovered] = useState<boolean>(false);

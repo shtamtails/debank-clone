@@ -97,7 +97,7 @@ describe("Input", () => {
     const { getByTestId } = render(
       <Input variant="light" testId="input" className={className} />
     );
-    const inputContainer = getByTestId("input-container");
+    const inputContainer = getByTestId("input-wrapper");
     expect(inputContainer).toHaveClass(`input ${className}`);
   });
 

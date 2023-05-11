@@ -1,3 +1,5 @@
+import { CSSProperties } from "react";
+
 export type Sizes = "xs" | "sm" | "md" | "lg" | "xl";
 
 export type Colors =
@@ -18,15 +20,16 @@ export type Colors =
 
 export type Variants = "filled" | "light" | "outline" | "subtle";
 
-export interface SharedUIProps {
+export type ColorScheme = "light" | "dark";
+
+export interface DefaultProps {
   className?: string;
-  fullWidth?: boolean;
-  disabled?: boolean;
-  size?: Sizes;
-  color?: Colors;
   testId?: string;
-  width?: string | number;
-  height?: string | number;
+  style?: CSSProperties;
+  variant?: ColorScheme;
+}
+
+export interface Indents {
   pl?: Sizes;
   pr?: Sizes;
   pt?: Sizes;
@@ -35,5 +38,14 @@ export interface SharedUIProps {
   mr?: Sizes;
   mt?: Sizes;
   mb?: Sizes;
+}
+
+export interface SharedUIProps extends DefaultProps, Indents {
+  fullWidth?: boolean;
+  disabled?: boolean;
+  size?: Sizes;
   radius?: Sizes;
+  color?: Colors;
+  width?: string | number;
+  height?: string | number;
 }

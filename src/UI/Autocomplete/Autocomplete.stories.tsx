@@ -40,6 +40,7 @@ export const AutocompleteDefault = () => {
     <>
       {value}
       <Autocomplete
+        testId="autocomplete"
         data={data}
         value={value}
         setValue={setValue}

@@ -28,7 +28,7 @@ describe("MenuItem", () => {
       <MenuItem
         testId="menu-item"
         onClick={onClick}
-        rightContent={<div>Content</div>}
+        rightSection={<div>Content</div>}
       >
         Home
       </MenuItem>

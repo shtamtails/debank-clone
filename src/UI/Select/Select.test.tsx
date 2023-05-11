@@ -16,12 +16,14 @@ describe("Select", () => {
 
   it("should render dropdown menu correctly when clicked", () => {
     const { getByTestId, queryAllByTestId } = render(
-      <Select variant="light" testId="select-input" data={data} />
+      <Select variant="light" testId="select" data={data} />
     );
-    const inputElement = getByTestId("select-input");
+
+    const inputElement = getByTestId("select");
     fireEvent.click(inputElement);
-    const dropdownMenu = getByTestId("dropdown-menu");
-    const dropdownMenuElements = queryAllByTestId("dropdown-menu-element");
+
+    const dropdownMenu = getByTestId("select-dropdown");
+    const dropdownMenuElements = queryAllByTestId("select-dropdown-element");
     expect(dropdownMenu).toBeInTheDocument();
     expect(dropdownMenuElements.length).toBe(2);
     expect(dropdownMenuElements[0]).toHaveTextContent("Vue");
@@ -29,12 +31,12 @@ describe("Select", () => {
 
   it("should select 'Vue' option when clicked", () => {
     const { getByTestId, queryAllByTestId } = render(
-      <Select data={data} variant="light" testId="select-input" />
+      <Select data={data} variant="light" testId="select" />
     );
 
-    const inputElement = getByTestId("select-input");
+    const inputElement = getByTestId("select");
     fireEvent.click(inputElement);
-    const dropdownMenuElements = queryAllByTestId("dropdown-menu-element");
+    const dropdownMenuElements = queryAllByTestId("select-dropdown-element");
     fireEvent.click(dropdownMenuElements[0]);
     expect(inputElement).toHaveValue("Vue");
   });

@@ -1,96 +1,62 @@
-import { InputProps } from "../../UI/Input/Input.model";
+import { ActionIconProps } from "../../UI/ActionIcon/ActionIcon";
+import { ButtonProps } from "../../UI/Button/Button";
 import { SharedUIProps } from "../../UI/models";
 
 export interface IGetClassName {
   defaultClassName?: string;
-  props: SharedUIProps;
+  props: SharedUIProps | ActionIconProps | ButtonProps;
   component?: string;
   withIndents?: boolean;
 }
 
 export const getClassName = ({
-  defaultClassName,
-  props,
-  component,
-  withIndents,
+  defaultClassName = "",
+  props: {
+    size = "sm",
+    disabled,
+    fullWidth,
+    pl,
+    pr,
+    pt,
+    pb,
+    ml,
+    mr,
+    mt,
+    mb,
+    radius,
+  } = {},
+  component = "",
+  withIndents = false,
 }: IGetClassName) => {
-  const className: string[] = [defaultClassName || ""];
+  const className = [defaultClassName];
+
   // Size
-  component && props.size && className.push(`${component}--${props.size}`);
+  if (component && size) {
+    className.push(`${component}--${size}`);
+  }
 
   // Disabled
-  props.disabled && className.push("disabled");
+  if (disabled) {
+    className.push("disabled");
+  }
 
   // FullWidth
-  props.fullWidth && className.push("fullWidth");
+  if (fullWidth) {
+    className.push("fullWidth");
+  }
 
   // Margins / Paddings / Border Radius
   if (withIndents) {
-    props.pl && className.push(`padding-left-${props.pl}`);
-    props.pr && className.push(`padding-right-${props.pr}`);
-    props.pt && className.push(`padding-top-${props.pt}`);
-    props.pb && className.push(`padding-bottom-${props.pb}`);
-    props.ml && className.push(`margin-left-${props.ml}`);
-    props.mr && className.push(`margin-right-${props.mr}`);
-    props.mt && className.push(`margin-top-${props.mt}`);
-    props.mb && className.push(`margin-bottom-${props.mb}`);
-    props.radius && className.push(`border-radius-${props.radius}`);
+    if (pl) className.push(`padding-left-${pl}`);
+    if (pr) className.push(`padding-right-${pr}`);
+    if (pt) className.push(`padding-top-${pt}`);
+    if (pb) className.push(`padding-bottom-${pb}`);
+    if (ml) className.push(`margin-left-${ml}`);
+    if (mr) className.push(`margin-right-${mr}`);
+    if (mt) className.push(`margin-top-${mt}`);
+    if (mb) className.push(`margin-bottom-${mb}`);
+    if (radius) className.push(`border-radius-${radius}`);
   }
 
   return className.join(" ").trim();
-};
-
-export const getInputClassNames = (props: InputProps) => {
-  const defaultClassName = [""];
-  props.variant &&
-    defaultClassName.push(
-      `input--${props.variant === "light" ? "light" : "dark"}`
-    );
-  props.error && defaultClassName.push("input--error");
-  props.icon && defaultClassName.push("input--with-icon");
-  props.type === "select" && defaultClassName.push("input--select");
-
-  const inputClassName = getClassName({
-    defaultClassName: defaultClassName.join(" ").trim(),
-    props,
-    component: "input",
-  });
-
-  const rawLabelClassName = ["input__label"];
-  props.size && rawLabelClassName.push(`input__label--${props.size}`);
-  props.variant &&
-    rawLabelClassName.push(
-      `input__label--${props.variant === "light" ? "light" : "dark"}`
-    );
-
-  const rawDescriptionClassName = ["input__description"];
-  props.size &&
-    rawDescriptionClassName.push(`input__description--${props.size}`);
-  props.variant &&
-    rawDescriptionClassName.push(
-      `input__description--${props.variant === "light" ? "light" : "dark"}`
-    );
-
-  const rawContainerClassName = [`input ${props.className}`];
-  props.pl && rawContainerClassName.push(`padding-left-${props.pl}`);
-  props.pr && rawContainerClassName.push(`padding-right-${props.pr}`);
-  props.pt && rawContainerClassName.push(`padding-top-${props.pt}`);
-  props.pb && rawContainerClassName.push(`padding-bottom-${props.pb}`);
-  props.ml && rawContainerClassName.push(`margin-left-${props.ml}`);
-  props.mr && rawContainerClassName.push(`margin-right-${props.mr}`);
-  props.mt && rawContainerClassName.push(`margin-top-${props.mt}`);
-  props.mb && rawContainerClassName.push(`margin-bottom-${props.mb}`);
-  props.radius && rawContainerClassName.push(`border-radius-${props.radius}`);
-  props.className && rawContainerClassName.push(props.className);
-
-  const containerClassName = rawContainerClassName.join(" ").trim();
-  const labelClassName = rawLabelClassName.join(" ").trim();
-  const descriptionClassName = rawDescriptionClassName.join(" ").trim();
-
-  return {
-    inputClassName,
-    containerClassName,
-    labelClassName,
-    descriptionClassName,
-  };
 };
