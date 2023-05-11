@@ -5,4 +5,5 @@ export interface MenuItemProps {
   icon?: ReactNode;
   rightContent?: ReactNode;
   onClick?: () => void;
+  testId?: string;
 }

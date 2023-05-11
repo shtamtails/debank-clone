@@ -1,20 +1,15 @@
 import { useEffect, useRef, useState } from "react";
-import { MenuProps } from "./Menu.model";
-import "./Menu.style.scss";
+import { CordsType, MenuProps } from "./Menu.types";
 import { useClickOutside } from "../../hooks/useClickOutside";
 import { MenuLabel } from "./MenuLabel/MenuLabel";
 import { MenuItem } from "./MenuItem/MenuItem";
 import { MenuDivider } from "./MenuDivider/MenuDivider";
+import "./Menu.style.scss";
 
 export const Menu = (props: MenuProps) => {
-  const { width, children, target, visible, setVisible } = props;
+  const { width, children, target, visible, setVisible, testId } = props;
   const [opacity, setOpacity] = useState(0);
-  const [targetCords, setTargetCords] = useState<{
-    x: number;
-    y: number;
-    height: number;
-    width: number;
-  }>({
+  const [targetCords, setTargetCords] = useState<CordsType>({
     x: 0,
     y: 0,
     height: 0,
@@ -45,6 +40,7 @@ export const Menu = (props: MenuProps) => {
   useClickOutside(menuRef, target, handleOutsideClick);
   return (
     <div
+      data-testid={testId}
       onTransitionEnd={() => {
         opacity === 0 && visible && setVisible(false);
       }}

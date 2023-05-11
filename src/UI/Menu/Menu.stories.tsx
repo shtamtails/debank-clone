@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Button } from "../Button/Button";
-import { RefObject, useRef, useState } from "react";
+import { Ref, RefObject, useRef, useState } from "react";
 import {
   FiDownload,
   FiImage,
@@ -25,7 +25,7 @@ export default meta;
 type Story = StoryObj<typeof Menu>;
 
 export const MenuRegular = () => {
-  const [menuVisible, setMenuVisible] = useState(false);
+  const [menuVisible, setMenuVisible] = useState(true);
   const buttonRef: RefObject<HTMLButtonElement> = useRef(null);
 
   return (
