@@ -16,7 +16,7 @@ describe("Select", () => {
 
   it("should render dropdown menu correctly when clicked", () => {
     const { getByTestId, queryAllByTestId } = render(
-      <Select variant="light" testId="select" data={data} />
+      <Select colorScheme="light" testId="select" data={data} />
     );
 
     const inputElement = getByTestId("select");
@@ -31,7 +31,7 @@ describe("Select", () => {
 
   it("should select 'Vue' option when clicked", () => {
     const { getByTestId, queryAllByTestId } = render(
-      <Select data={data} variant="light" testId="select" />
+      <Select data={data} testId="select" />
     );
 
     const inputElement = getByTestId("select");

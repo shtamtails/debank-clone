@@ -1,11 +1,14 @@
+import { ColorScheme } from "../../UI/models";
 import { getColor } from "../getColor/getColor";
 
-export const getStyles = (props: any) => {
-  const styles = { width: props.width, height: props.height };
+export const getStyles = (props: any, theme: ColorScheme) => {
+  const { width, height, color, variant } = props;
+  const styles = { width, height };
 
   const colors = getColor({
-    color: props.color || "blue",
-    variant: props.variant || "filled",
+    color: color || "blue",
+    variant: variant || "filled",
+    theme,
   });
 
   const defaultStyles = {

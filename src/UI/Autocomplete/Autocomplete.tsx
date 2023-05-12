@@ -2,8 +2,8 @@ import { useRef, useState } from "react";
 import { useClickOutside } from "../../hooks/useClickOutside";
 import { DropdownMenu } from "../DropdownMenu/DropdownMenu";
 import { InputProps, InputWrapper } from "../InputWrapper/InputWrapper";
-import "./Autocomplete.style.scss";
 import { getInputClassNames } from "../../utils/getClassName/getInputClassName";
+import "./Autocomplete.style.scss";
 
 export type AutocompleteData = { value: string; label: string };
 
@@ -13,6 +13,8 @@ export interface AutocompleteProps extends Omit<InputProps, "type"> {
 
 export const Autocomplete: React.FC<AutocompleteProps> = (props) => {
   const {
+    colorScheme = "light",
+    size = "sm",
     testId,
     disabled,
     placeholder,
@@ -20,8 +22,6 @@ export const Autocomplete: React.FC<AutocompleteProps> = (props) => {
     height,
     data,
     style,
-    variant,
-    size,
     value,
     setValue,
   } = props;
@@ -62,7 +62,7 @@ export const Autocomplete: React.FC<AutocompleteProps> = (props) => {
         <DropdownMenu
           testId={testId && `${testId}-dropdown`}
           data={filteredData}
-          variant={variant}
+          colorScheme={colorScheme}
           size={size || "sm"}
           setMenuOpened={setMenuOpened}
           value={value}

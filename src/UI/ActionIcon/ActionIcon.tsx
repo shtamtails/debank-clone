@@ -1,16 +1,26 @@
-import "./ActionIcon.style.scss";
 import { getClassName } from "../../utils/getClassName/getClassName";
 import { getStyles } from "../../utils/getStyles/getStyles";
 import { ReactNode, useState } from "react";
 import { SharedUIProps, Variants } from "../models";
+import "./ActionIcon.style.scss";
 
-export interface ActionIconProps extends Omit<SharedUIProps, "variant"> {
+export interface ActionIconProps extends SharedUIProps {
   variant?: Variants;
   children: ReactNode;
   onClick?: () => void;
 }
 
 export const ActionIcon: React.FC<ActionIconProps> = (props) => {
+  const {
+    colorScheme = "light",
+    variant = "filled",
+    size = "sm",
+    children,
+    onClick,
+    testId,
+    disabled,
+  } = props;
+
   const [hovered, setHovered] = useState<boolean>(false);
 
   const className = getClassName({
@@ -20,16 +30,16 @@ export const ActionIcon: React.FC<ActionIconProps> = (props) => {
     withIndents: true,
   });
 
-  const styles = getStyles(props);
+  const styles = getStyles({ variant, size, ...props }, colorScheme);
 
   return (
     <button
-      disabled={props.disabled}
-      data-testid={props.testId}
+      disabled={disabled}
+      data-testid={testId}
       className={className}
       style={hovered ? styles.hoveredStyles : styles.defaultStyles}
       onClick={() => {
-        props.onClick && props.onClick();
+        onClick && onClick();
       }}
       onMouseEnter={() => {
         setHovered(true);
@@ -38,7 +48,7 @@ export const ActionIcon: React.FC<ActionIconProps> = (props) => {
         setHovered(false);
       }}
     >
-      {props.children}
+      {children}
     </button>
   );
 };

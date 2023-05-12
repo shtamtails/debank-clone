@@ -2,12 +2,13 @@ import { ReactNode, forwardRef, useState } from "react";
 import "./Button.style.scss";
 import { getStyles } from "../../utils/getStyles/getStyles";
 import { getClassName } from "../../utils/getClassName/getClassName";
-import { SharedUIProps, Variants } from "../models";
+import { ColorScheme, SharedUIProps, Variants } from "../models";
 
 export interface ButtonProps extends Omit<SharedUIProps, "variant"> {
   children: ReactNode | JSX.Element | string;
   type?: "button" | "submit" | "reset";
   variant?: Variants;
+  colorScheme: ColorScheme;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   onClick?: () => void;
@@ -15,9 +16,21 @@ export interface ButtonProps extends Omit<SharedUIProps, "variant"> {
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
+    const {
+      variant = "filled",
+      size = "sm",
+      colorScheme = "light",
+      type = "button",
+      children,
+      testId,
+      leftIcon,
+      rightIcon,
+      onClick,
+      disabled,
+    } = props;
     const [hovered, setHovered] = useState<boolean>(false);
 
-    const styles = getStyles(props);
+    const styles = getStyles({ size, variant, ...props }, colorScheme);
 
     const className = getClassName({
       defaultClassName: "button",
@@ -29,10 +42,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref}
-        data-testid={props.testId}
-        onClick={props.onClick}
-        type={props.type}
-        disabled={props.disabled}
+        data-testid={testId}
+        onClick={onClick}
+        type={type}
+        disabled={disabled}
         className={className}
         style={hovered ? styles.hoveredStyles : styles.defaultStyles}
         onMouseEnter={() => {
@@ -42,12 +55,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           setHovered(false);
         }}
       >
-        {props.leftIcon && (
-          <div className="button-icon margin-right-md">{props.leftIcon}</div>
+        {leftIcon && (
+          <div className="button-icon margin-right-md">{leftIcon}</div>
         )}
-        {props.children}
-        {props.rightIcon && (
-          <div className="button-icon margin-left-md">{props.rightIcon}</div>
+        {children}
+        {rightIcon && (
+          <div className="button-icon margin-left-md">{rightIcon}</div>
         )}
       </button>
     );

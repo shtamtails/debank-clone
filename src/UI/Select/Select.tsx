@@ -12,6 +12,7 @@ export interface SelectProps extends Omit<InputProps, "type"> {
 
 export const Select: React.FC<SelectProps> = (props) => {
   const {
+    colorScheme = "light",
     testId,
     disabled,
     placeholder,
@@ -19,7 +20,6 @@ export const Select: React.FC<SelectProps> = (props) => {
     height,
     data,
     style,
-    variant,
     size,
     value,
     setValue,
@@ -63,7 +63,7 @@ export const Select: React.FC<SelectProps> = (props) => {
         <DropdownMenu
           testId={testId && `${testId}-dropdown`}
           data={data}
-          variant={variant}
+          colorScheme={colorScheme}
           size={size || "sm"}
           setMenuOpened={setMenuOpened}
           value={value}

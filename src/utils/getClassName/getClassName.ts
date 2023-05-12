@@ -13,6 +13,7 @@ export const getClassName = ({
   defaultClassName = "",
   props: {
     size = "sm",
+    colorScheme = "light",
     disabled,
     fullWidth,
     pl,
@@ -43,6 +44,11 @@ export const getClassName = ({
   // FullWidth
   if (fullWidth) {
     className.push("fullWidth");
+  }
+
+  // ColorScheme
+  if (component && colorScheme) {
+    className.push(`${component}--${colorScheme}`);
   }
 
   // Margins / Paddings / Border Radius

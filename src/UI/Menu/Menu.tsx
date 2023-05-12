@@ -23,6 +23,7 @@ export interface MenuProps extends DefaultProps {
 
 export const Menu = (props: MenuProps) => {
   const {
+    colorScheme = "light",
     width,
     children,
     target,
@@ -30,7 +31,6 @@ export const Menu = (props: MenuProps) => {
     setVisible,
     testId,
     className,
-    variant,
     style,
   } = props;
   const [opacity, setOpacity] = useState(0);
@@ -66,7 +66,7 @@ export const Menu = (props: MenuProps) => {
 
   const getClassName = () => {
     const defaultClassName = ["menu"];
-    defaultClassName.push(`menu--${variant}`);
+    defaultClassName.push(`menu--${colorScheme}`);
     className && defaultClassName.push(className);
     return defaultClassName.join(" ").trim();
   };

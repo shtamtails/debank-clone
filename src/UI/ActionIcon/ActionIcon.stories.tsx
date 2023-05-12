@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { ActionIcon } from "./ActionIcon";
-import { HiSaveAs, HiSearch } from "react-icons/hi";
+import { HiSearch } from "react-icons/hi";
 import { Colors, Variants } from "../models";
 
 const meta: Meta<typeof ActionIcon> = {
@@ -39,7 +39,7 @@ export const ActionIcons = () => {
       {variants.map((variant) => (
         <div className="action-icon-story__container margin-bottom-lg">
           {colors.map((color) => (
-            <ActionIcon color={color} variant={variant}>
+            <ActionIcon color={color} variant={variant} colorScheme="light">
               <HiSearch />
             </ActionIcon>
           ))}

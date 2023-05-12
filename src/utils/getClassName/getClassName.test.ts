@@ -4,6 +4,7 @@ import { getClassName } from "./getClassName";
 describe("getClassName", () => {
   const defaultClassName = "test";
   const component = "component";
+
   const props: SharedUIProps = {
     fullWidth: true,
     disabled: true,

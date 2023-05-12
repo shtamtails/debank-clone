@@ -6,7 +6,9 @@ import { ActionIcon } from "./ActionIcon";
 describe("Action Icon component", () => {
   it("should render children text", () => {
     const { getByText } = render(
-      <ActionIcon testId="action-icon">Test</ActionIcon>
+      <ActionIcon colorScheme="dark" testId="action-icon">
+        Test
+      </ActionIcon>
     );
     const actionIcon = getByText("Test");
     expect(actionIcon).toBeInTheDocument();

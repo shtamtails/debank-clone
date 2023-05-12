@@ -8,7 +8,6 @@ export interface InputProps extends Omit<SharedUIProps, "color"> {
   setValue?: (arg0: string) => void;
   label?: string;
   required?: boolean;
-  variant: "dark" | "light";
   placeholder?: string;
   description?: string;
   error?: string;
@@ -30,6 +29,7 @@ export interface InputWrapperProps extends InputProps {
 
 export const InputWrapper: React.FC<InputWrapperProps> = (props) => {
   const {
+    colorScheme = "light",
     label,
     required,
     description,
@@ -42,7 +42,7 @@ export const InputWrapper: React.FC<InputWrapperProps> = (props) => {
   } = props;
 
   const { descriptionClassName, labelClassName, containerClassName } =
-    getInputClassNames(props);
+    getInputClassNames({ colorScheme, ...props });
 
   return (
     <div

@@ -3,12 +3,12 @@ import { ActionIcon } from "../ActionIcon/ActionIcon";
 import { AiOutlineClose } from "react-icons/ai";
 import "./Modal.styles.scss";
 import { useClickOutside } from "../../hooks/useClickOutside";
-import { DefaultProps } from "../models";
+import { ColorScheme, DefaultProps } from "../models";
 
 export interface ModalProps extends DefaultProps {
   isOpened: boolean;
   setIsOpened: (arg0: boolean) => void;
-  variant?: "light" | "dark";
+  colorScheme: ColorScheme;
   title: string;
   children: ReactNode;
   width?: string | number;
@@ -16,11 +16,11 @@ export interface ModalProps extends DefaultProps {
 
 export const Modal: React.FC<ModalProps> = (props) => {
   const {
+    colorScheme = "light",
     children,
     title,
     isOpened,
     setIsOpened,
-    variant,
     width,
     testId,
     className,
@@ -43,7 +43,8 @@ export const Modal: React.FC<ModalProps> = (props) => {
 
   const getModalContainerClassName = () => {
     const defaultClassName = ["modal__inner__container"];
-    variant && defaultClassName.push(`modal__inner__container--${variant}`);
+    colorScheme &&
+      defaultClassName.push(`modal__inner__container--${colorScheme}`);
     className && defaultClassName.push(className);
     return defaultClassName.join(" ").trim();
   };
@@ -71,6 +72,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
               onClick={() => handleOutsideClick()}
               variant="subtle"
               testId="modal-close-button"
+              colorScheme={colorScheme}
             >
               <AiOutlineClose />
             </ActionIcon>

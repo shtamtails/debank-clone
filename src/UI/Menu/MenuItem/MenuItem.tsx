@@ -11,6 +11,7 @@ export interface MenuItemProps extends DefaultProps {
 
 export const MenuItem: React.FC<MenuItemProps> = (props) => {
   const {
+    colorScheme = "light",
     children,
     icon,
     rightSection,
@@ -18,12 +19,11 @@ export const MenuItem: React.FC<MenuItemProps> = (props) => {
     className,
     testId,
     style,
-    variant,
   } = props;
 
   const getItemClassName = () => {
     const defaultClassName = ["menu__item"];
-    variant && defaultClassName.push(`menu__item--${variant}`);
+    colorScheme && defaultClassName.push(`menu__item--${colorScheme}`);
     className && defaultClassName.push(className);
     return defaultClassName.join(" ").trim();
   };

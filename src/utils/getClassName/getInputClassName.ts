@@ -2,11 +2,11 @@ import { InputProps } from "../../UI/InputWrapper/InputWrapper";
 import { getClassName } from "./getClassName";
 
 export const getInputClassNames = (props: InputProps) => {
-  const { variant, error, icon, className, type } = props;
+  const { colorScheme = "light", error, icon, className, type } = props;
 
   const defaultClassName = [];
-  if (variant) {
-    defaultClassName.push(`input--${variant === "light" ? "light" : "dark"}`);
+  if (colorScheme) {
+    defaultClassName.push(`input--${colorScheme}`);
   }
   if (error) {
     defaultClassName.push("input--error");
@@ -27,14 +27,14 @@ export const getInputClassNames = (props: InputProps) => {
   const labelClassName = getClassName({
     defaultClassName: "input__label",
     props,
-    component: "",
+    component: "input__label",
     withIndents: false,
   });
 
   const descriptionClassName = getClassName({
     defaultClassName: "input__description",
     props,
-    component: "",
+    component: "input__description",
     withIndents: false,
   });
 

@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Input } from "./Input";
 import { BiLockAlt } from "react-icons/bi";
-import { HiSave, HiSearch } from "react-icons/hi";
+import { HiSave } from "react-icons/hi";
 import { useState } from "react";
 
 const meta: Meta<typeof Input> = {
@@ -9,7 +9,7 @@ const meta: Meta<typeof Input> = {
   component: Input,
   tags: ["autodocs"],
   argTypes: {
-    variant: {
+    colorScheme: {
       control: { type: "select" },
       options: ["dark", "light"],
     },
@@ -33,7 +33,7 @@ export const Inputs = () => {
           fullWidth
           label="Full name"
           required
-          variant="dark"
+          colorScheme="dark"
           description="Description"
           mb="lg"
         />
@@ -41,19 +41,24 @@ export const Inputs = () => {
           fullWidth
           label="Full name"
           required
-          variant="dark"
+          colorScheme="dark"
           value="Hello World!"
           description="Description"
           error="Error"
         />
       </div>
       <div className="story-container--light">
-        <Input fullWidth placeholder="Placeholder" variant="light" mb="lg" />
+        <Input
+          fullWidth
+          placeholder="Placeholder"
+          colorScheme="light"
+          mb="lg"
+        />
         <Input
           fullWidth
           label="Full name"
           required
-          variant="light"
+          colorScheme="light"
           value="Hello World!"
           description="Description"
           error="Error"
@@ -69,7 +74,7 @@ export const InputWithIcon = () => {
       label="Input with icon"
       description="Input with icon"
       placeholder="Password"
-      variant="light"
+      colorScheme="light"
       icon={<BiLockAlt />}
       type="password"
     />
@@ -85,7 +90,7 @@ export const InputSizes = () => {
           placeholder="Placeholder"
           description="Description"
           label="Label"
-          variant="light"
+          colorScheme="light"
           mb="lg"
           size="xs"
         />
@@ -94,7 +99,7 @@ export const InputSizes = () => {
           placeholder="Placeholder"
           description="Description"
           label="Label"
-          variant="light"
+          colorScheme="light"
           mb="lg"
           size="sm"
         />
@@ -103,7 +108,7 @@ export const InputSizes = () => {
           placeholder="Placeholder"
           description="Description"
           label="Label"
-          variant="light"
+          colorScheme="light"
           mb="lg"
           size="md"
         />
@@ -112,7 +117,7 @@ export const InputSizes = () => {
           placeholder="Placeholder"
           description="Description"
           label="Label"
-          variant="light"
+          colorScheme="light"
           mb="lg"
           size="lg"
         />
@@ -121,7 +126,7 @@ export const InputSizes = () => {
           placeholder="Placeholder"
           description="Description"
           label="Label"
-          variant="light"
+          colorScheme="light"
           mb="lg"
           size="xl"
         />
@@ -132,7 +137,7 @@ export const InputSizes = () => {
 
 export const TextInput: Story = {
   args: {
-    variant: "light",
+    colorScheme: "light",
     label: "Full name",
     required: true,
   },

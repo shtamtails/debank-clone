@@ -26,7 +26,7 @@ export interface DefaultProps {
   className?: string;
   testId?: string;
   style?: CSSProperties;
-  variant?: ColorScheme;
+  colorScheme?: ColorScheme;
 }
 
 export interface Indents {

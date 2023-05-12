@@ -18,14 +18,14 @@ describe("Modal component", () => {
   });
 
   test("renders modal content", () => {
-    render(<Modal isOpened={true} {...defaultProps} />);
+    render(<Modal colorScheme="dark" isOpened={true} {...defaultProps} />);
     expect(screen.getByTestId("modal")).toHaveStyle({ opacity: 1 });
     expect(screen.getByText("Test Modal")).toBeInTheDocument();
     expect(screen.getByText("Test Content")).toBeInTheDocument();
   });
 
   test("calls setIsOpened when close button is clicked", async () => {
-    render(<Modal isOpened={true} {...defaultProps} />);
+    render(<Modal colorScheme="dark" isOpened={true} {...defaultProps} />);
     const closeButton = screen.getByTestId("modal-close-button");
     userEvent.click(closeButton);
     await waitFor(() => {
@@ -34,7 +34,7 @@ describe("Modal component", () => {
   });
 
   test("closes modal when overlay is clicked", async () => {
-    render(<Modal isOpened={true} {...defaultProps} />);
+    render(<Modal colorScheme="dark" isOpened={true} {...defaultProps} />);
     const overlay = screen.getByTestId("modal-overlay");
     userEvent.click(overlay);
     await waitFor(() => {

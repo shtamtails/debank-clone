@@ -16,9 +16,9 @@ export interface DropdownMenuProps extends DefaultProps {
 export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
   (props, ref) => {
     const {
+      size = "sm",
+      colorScheme = "light",
       data,
-      variant,
-      size,
       setMenuOpened,
       setLabel,
       value,
@@ -31,11 +31,11 @@ export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
     const getElementClassName = (element: DropdownMenuData) => {
       const dropdownElementClassName = ["dropdown-menu__element"];
       size && dropdownElementClassName.push(`dropdown-menu__element--${size}`);
-      variant &&
-        dropdownElementClassName.push(`dropdown-menu__element--${variant}`);
+      colorScheme &&
+        dropdownElementClassName.push(`dropdown-menu__element--${colorScheme}`);
       value === element.value &&
         dropdownElementClassName.push(
-          `dropdown-menu__element--selected--${variant}`
+          `dropdown-menu__element--selected--${colorScheme}`
         );
       return dropdownElementClassName.join(" ").trim();
     };
@@ -43,7 +43,7 @@ export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
     const getDropdownClassName = () => {
       const dropdownClassName = ["dropdown-menu"];
       className && dropdownClassName.push(className);
-      variant && dropdownClassName.push(`dropdown-menu--${variant}`);
+      colorScheme && dropdownClassName.push(`dropdown-menu--${colorScheme}`);
       return dropdownClassName.join(" ").trim();
     };
 

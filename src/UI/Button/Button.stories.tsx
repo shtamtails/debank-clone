@@ -40,7 +40,7 @@ export const Buttons = () => {
       {variants.map((variant) => (
         <div className="buttons-story__container margin-bottom-lg">
           {colors.map((color) => (
-            <Button color={color} variant={variant}>
+            <Button color={color} variant={variant} colorScheme="light">
               {color}
             </Button>
           ))}

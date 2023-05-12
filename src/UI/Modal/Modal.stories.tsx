@@ -23,9 +23,12 @@ export const ModalRegular = () => {
 
   return (
     <div className="flex">
-      <Button onClick={() => setDarkModalOpened(true)}>Open dark modal</Button>
+      <Button onClick={() => setDarkModalOpened(true)} colorScheme="light">
+        Open dark modal
+      </Button>
       {darkModalOpened && (
         <Modal
+          colorScheme="dark"
           isOpened={darkModalOpened}
           setIsOpened={setDarkModalOpened}
           title="Authentication"
@@ -44,12 +47,16 @@ export const ModalRegular = () => {
             description="Password"
             mb="xl"
           />
-          <Button fullWidth variant="filled">
+          <Button fullWidth variant="light" colorScheme="dark">
             Log in
           </Button>
         </Modal>
       )}
-      <Button onClick={() => setLightModalOpened(true)} ml="xl">
+      <Button
+        onClick={() => setLightModalOpened(true)}
+        ml="xl"
+        colorScheme="light"
+      >
         Open light modal
       </Button>
       {lightModalOpened && (
@@ -59,6 +66,7 @@ export const ModalRegular = () => {
           title="Authentication"
           width="500px"
           variant="light"
+          colorScheme="light"
         >
           <Input
             variant="light"
@@ -73,7 +81,7 @@ export const ModalRegular = () => {
             description="Password"
             mb="xl"
           />
-          <Button fullWidth variant="filled">
+          <Button fullWidth variant="light" colorScheme="light">
             Log in
           </Button>
         </Modal>

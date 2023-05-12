@@ -1,22 +1,24 @@
-import { getColor, DEFAULT_COLORS } from "./getColor";
+import { DEFAULT_COLORS } from "./defaultColors";
+import { getColor } from "./getColor";
+import { hexToRgba } from "./hexToRGBA";
 
 describe("getColor", () => {
-  it('should return the correct colors for the "dark" color variant', () => {
+  it('should return the correct "light" colors for the "dark" color variant', () => {
     const { defaultStyles, hoverStyles } = getColor({
-      variant: "filled",
-      color: "dark",
+      variant: "light",
+      color: "blue",
     });
 
     const defaultExpected = {
       outline: "none",
-      backgroundColor: DEFAULT_COLORS.dark[7],
-      color: DEFAULT_COLORS.gray[2],
+      backgroundColor: hexToRgba(DEFAULT_COLORS.blue[8], 0.2),
+      color: DEFAULT_COLORS.blue[5],
     };
 
     const hoverExpected = {
       color: "none",
-      backgroundColor: DEFAULT_COLORS.dark[8],
-      outline: DEFAULT_COLORS.dark[8],
+      backgroundColor: hexToRgba(DEFAULT_COLORS.blue[9], 0.2),
+      outline: DEFAULT_COLORS.blue[5],
     };
 
     expect(defaultStyles).toEqual(defaultExpected);

@@ -37,6 +37,7 @@ export const MenuRegular = () => {
         variant="light"
         ref={lightButtonRef}
         onClick={() => setLightMenuVisible(true)}
+        colorScheme="light"
       >
         Toggle light menu
       </Button>
@@ -58,9 +59,10 @@ export const MenuRegular = () => {
         </Menu>
       )}
       <Button
-        color="dark"
+        color="blue"
         ref={darkButtonRef}
         onClick={() => setDarkMenuVisible(true)}
+        colorScheme="dark"
       >
         Toggle dark menu
       </Button>

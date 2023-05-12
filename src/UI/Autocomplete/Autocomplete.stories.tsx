@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta } from "@storybook/react";
 import { Autocomplete } from "./Autocomplete";
 import { useState } from "react";
 
@@ -6,17 +6,12 @@ const meta: Meta<typeof Autocomplete> = {
   title: "UI/Autocomplete",
   component: Autocomplete,
   tags: ["autodocs"],
-  argTypes: {
-    variant: {
-      control: { type: "select" },
-      options: ["dark", "light"],
-    },
-  },
+  argTypes: {},
 };
 
 export default meta;
 
-type Story = StoryObj<typeof Autocomplete>;
+// type Story = StoryObj<typeof Autocomplete>;
 
 const data = [
   {
@@ -47,7 +42,7 @@ export const AutocompleteDefault = () => {
         placeholder="Select the best framework!"
         label="Autocomplete Input"
         description="Type value"
-        variant="light"
+        colorScheme="dark"
       />
     </>
   );
