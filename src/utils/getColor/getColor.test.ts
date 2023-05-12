@@ -1,6 +1,6 @@
 import { DEFAULT_COLORS } from "./defaultColors";
 import { getColor } from "./getColor";
-import { hexToRgba } from "./hexToRGBA";
+import { hexToRgba } from "./hexToRgba";
 
 describe("getColor", () => {
   it('should return the correct "light" colors for the "dark" color variant', () => {

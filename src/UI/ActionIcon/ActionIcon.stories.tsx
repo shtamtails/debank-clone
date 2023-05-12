@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta } from "@storybook/react";
 import { ActionIcon } from "./ActionIcon";
 import { HiSearch } from "react-icons/hi";
 import { Colors, Variants } from "../models";
@@ -14,7 +14,7 @@ const meta: Meta<typeof ActionIcon> = {
 
 export default meta;
 
-type Story = StoryObj<typeof ActionIcon>;
+// type Story = StoryObj<typeof ActionIcon>;
 
 export const ActionIcons = () => {
   const colors: Colors[] = [

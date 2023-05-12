@@ -1,6 +1,6 @@
 import { ColorScheme, Colors, Variants } from "../../UI/models";
 import { DEFAULT_COLORS } from "./defaultColors";
-import { hexToRgba } from "./hexToRGBA";
+import { hexToRgba } from "./hexToRgba";
 
 export interface IGetColor {
   color: Colors;

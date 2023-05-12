@@ -20,7 +20,7 @@ describe("getStyles", () => {
       variant: "filled",
     });
 
-    const actualStyles = getStyles(props).defaultStyles;
+    const actualStyles = getStyles(props, "light").defaultStyles;
 
     expect(actualStyles).toEqual({
       ...expectedStyles,
@@ -46,7 +46,10 @@ describe("getStyles", () => {
       variant: "filled",
     });
 
-    const actualStyles = getStyles({ ...props, hovered: true }).hoveredStyles;
+    const actualStyles = getStyles(
+      { ...props, hovered: true },
+      "light"
+    ).hoveredStyles;
 
     expect(actualStyles).toEqual({
       ...expectedStyles,

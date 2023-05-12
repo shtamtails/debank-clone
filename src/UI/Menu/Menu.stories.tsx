@@ -1,6 +1,6 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta } from "@storybook/react";
 import { Button } from "../Button/Button";
-import { Ref, RefObject, useRef, useState } from "react";
+import { RefObject, useRef, useState } from "react";
 import {
   FiDownload,
   FiImage,
@@ -22,7 +22,7 @@ const meta: Meta<typeof Menu> = {
 
 export default meta;
 
-type Story = StoryObj<typeof Menu>;
+// type Story = StoryObj<typeof Menu>;
 
 export const MenuRegular = () => {
   const [lightMenuVisible, setLightMenuVisible] = useState(false);
@@ -34,7 +34,6 @@ export const MenuRegular = () => {
     <div className="flex">
       <Button
         mr="xl"
-        variant="light"
         ref={lightButtonRef}
         onClick={() => setLightMenuVisible(true)}
         colorScheme="light"
@@ -68,32 +67,19 @@ export const MenuRegular = () => {
       </Button>
       {darkMenuVisible && (
         <Menu
-          variant="dark"
           target={darkButtonRef}
           visible={darkMenuVisible}
           setVisible={setDarkMenuVisible}
         >
           <Menu.Label>Application</Menu.Label>
-          <Menu.Item variant="dark" icon={<FiSettings />}>
-            Settings
-          </Menu.Item>
-          <Menu.Item variant="dark" icon={<FiMessageCircle />}>
-            Messages
-          </Menu.Item>
-          <Menu.Item variant="dark" icon={<FiImage />}>
-            Gallery
-          </Menu.Item>
-          <Menu.Item variant="dark" icon={<FiSearch />}>
-            Search
-          </Menu.Item>
-          <Menu.Divider variant="dark" />
+          <Menu.Item icon={<FiSettings />}>Settings</Menu.Item>
+          <Menu.Item icon={<FiMessageCircle />}>Messages</Menu.Item>
+          <Menu.Item icon={<FiImage />}>Gallery</Menu.Item>
+          <Menu.Item icon={<FiSearch />}>Search</Menu.Item>
+          <Menu.Divider />
           <Menu.Label>Danger Zone</Menu.Label>
-          <Menu.Item variant="dark" icon={<FiDownload />}>
-            Transfer my data
-          </Menu.Item>
-          <Menu.Item variant="dark" icon={<FiTrash />}>
-            Delete my account
-          </Menu.Item>
+          <Menu.Item icon={<FiDownload />}>Transfer my data</Menu.Item>
+          <Menu.Item icon={<FiTrash />}>Delete my account</Menu.Item>
         </Menu>
       )}
     </div>

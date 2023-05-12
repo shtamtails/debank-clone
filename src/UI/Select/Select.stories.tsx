@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta } from "@storybook/react";
 import { useState } from "react";
 import { Select } from "./Select";
 
@@ -7,7 +7,7 @@ const meta: Meta<typeof Select> = {
   component: Select,
   tags: ["autodocs"],
   argTypes: {
-    variant: {
+    colorScheme: {
       control: { type: "select" },
       options: ["dark", "light"],
     },
@@ -16,7 +16,7 @@ const meta: Meta<typeof Select> = {
 
 export default meta;
 
-type Story = StoryObj<typeof Select>;
+// type Story = StoryObj<typeof Select>;
 
 const data = [
   {
@@ -42,7 +42,7 @@ export const defaultSelect = () => {
         data={data}
         value={value}
         setValue={setValue}
-        variant="light"
+        colorScheme="light"
         placeholder="Select the best framework"
         label="Select Input"
         description="Chose variant"

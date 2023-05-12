@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Modal } from "./Modal";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta } from "@storybook/react";
 import { Button } from "../Button/Button";
 import { Input } from "../Input/Input";
 
@@ -15,7 +15,7 @@ const meta: Meta<typeof Modal> = {
 
 export default meta;
 
-type Story = StoryObj<typeof Modal>;
+// type Story = StoryObj<typeof Modal>;
 
 export const ModalRegular = () => {
   const [lightModalOpened, setLightModalOpened] = useState(false);
@@ -34,20 +34,14 @@ export const ModalRegular = () => {
           title="Authentication"
           width="500px"
         >
+          <Input label="Login" description="Email or username" mb="xl" />
           <Input
-            variant="dark"
-            label="Login"
-            description="Email or username"
-            mb="xl"
-          />
-          <Input
-            variant="dark"
             label="Password"
             type="password"
             description="Password"
             mb="xl"
           />
-          <Button fullWidth variant="light" colorScheme="dark">
+          <Button fullWidth colorScheme="dark">
             Log in
           </Button>
         </Modal>
@@ -65,23 +59,16 @@ export const ModalRegular = () => {
           setIsOpened={setLightModalOpened}
           title="Authentication"
           width="500px"
-          variant="light"
           colorScheme="light"
         >
+          <Input label="Login" description="Email or username" mb="xl" />
           <Input
-            variant="light"
-            label="Login"
-            description="Email or username"
-            mb="xl"
-          />
-          <Input
-            variant="light"
             label="Password"
             type="password"
             description="Password"
             mb="xl"
           />
-          <Button fullWidth variant="light" colorScheme="light">
+          <Button fullWidth colorScheme="light">
             Log in
           </Button>
         </Modal>

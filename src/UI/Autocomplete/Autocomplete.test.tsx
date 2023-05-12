@@ -16,7 +16,7 @@ describe("Autocomplete", () => {
 
   it("should render dropdown menu correctly when clicked", () => {
     const { getByTestId, queryAllByTestId } = render(
-      <Autocomplete variant="light" testId="autocomplete" data={data} />
+      <Autocomplete testId="autocomplete" data={data} />
     );
     const inputElement = getByTestId("autocomplete");
     fireEvent.click(inputElement);
@@ -31,7 +31,7 @@ describe("Autocomplete", () => {
 
   it("should select 'Vue' option when clicked", () => {
     const { getByTestId, queryAllByTestId } = render(
-      <Autocomplete data={data} variant="light" testId="autocomplete" />
+      <Autocomplete data={data} testId="autocomplete" />
     );
 
     const inputElement = getByTestId("autocomplete");
@@ -45,7 +45,7 @@ describe("Autocomplete", () => {
 
   it("should filter options based on input value", () => {
     const { getByTestId, queryByText, queryAllByTestId } = render(
-      <Autocomplete variant="light" data={data} testId="autocomplete" />
+      <Autocomplete data={data} testId="autocomplete" />
     );
 
     const inputElement = getByTestId("autocomplete");
